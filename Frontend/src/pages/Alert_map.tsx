@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Fullmap from '../component/FullMap';
+import Fullmap from '../components/FullMap';
 import Map_data from '../data/MapData';
 
 

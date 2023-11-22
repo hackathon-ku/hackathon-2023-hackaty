@@ -6,8 +6,7 @@ const NavDescription = [
   { name: 'Home', icon: HouseSimple, path: '/' },
   { name: 'Nisit Card', icon: IdentificationCard, path: '' },
   { name: 'Check in', icon: QrCode, path: '' },
-  // TODO : Add path
-  { name: 'Emergency', icon: WarningCircle, path: '' },
+  { name: 'Emergency', icon: WarningCircle, path: '/sos-call' },
   { name: 'More', icon: DotsThreeOutline, path: '' },
 ] as const;
 
