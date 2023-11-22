@@ -19,5 +19,5 @@ class Report(Document):
     timestamp: datetime.datetime
     priority: Optional[str] = "LOW"
     vote_score: int
-    is_approved: Optional[bool] = False
+    report_status: Optional[str] = "INBOX"
     photo_url: Optional[str] = None

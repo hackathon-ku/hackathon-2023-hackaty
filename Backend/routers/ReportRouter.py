@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from model import CreateReportBody
+from model import CreateUserReportBody, CreateAdminReportBody
 from db import Report
 from datetime import datetime
 
@@ -15,9 +15,9 @@ def landing():
     return {"message": "hello"}
 
 
-@router.post('/create', status_code=201)
-async def create_report(createbody: CreateReportBody):
-    report = Report(**{**createbody.model_dump(), "timestamp": datetime.now(), "vote_score": 0, "is_approved": False})
+@router.post('/user/create', status_code=201)
+async def create_user_report(createbody: CreateUserReportBody):
+    report = Report(**{**createbody.model_dump(), "timestamp": datetime.now(), "vote_score": 0, "report_status": "Inbox"})
     await report.insert()
     return {
         "message": "created successfully",
@@ -29,3 +29,12 @@ async def create_report(createbody: CreateReportBody):
 async def find_report():
     report = await Report.find().to_list()
     return {"message": report}
+
+@router.post('/admin/create')
+async def create_admin_report(createbody: CreateAdminReportBody):
+    report = Report(**{**createbody, "timestamp": datetime.now(), "vote_score": 0, "report_status": "Approved"})
+    await report.insert()
+    return {
+        "message": "create successfully",
+        "data": report
+    }

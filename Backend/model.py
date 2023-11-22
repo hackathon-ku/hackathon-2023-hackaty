@@ -12,12 +12,22 @@ class LocationBody(BaseModel):
     lon: float
 
 
-class CreateReportBody(BaseModel):
+class CreateUserReportBody(BaseModel):
     title: str
     user: str
-    tag: List[TagBody]
+    tags: List[TagBody]
     location: LocationBody
     description: str
     priority: Optional[str] = None
     photo_url: Optional[str] = None
 
+
+class CreateAdminReportBody(BaseModel):
+    title: str
+    user: str
+    tags: List[TagBody]
+    location: LocationBody
+    description: str
+    priority: Optional[str] = None
+    report_status: Optional[str] = "Approved"
+    photo_url: Optional[str] = None
