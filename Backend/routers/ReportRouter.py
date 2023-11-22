@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
 from db import Report
 from datetime import datetime
+from utils import calculate_distance
 
 
 router = APIRouter(
@@ -29,7 +30,7 @@ async def create_user_report(createbody: CreateUserReportBody):
 
 @router.get('/find_all')
 async def find_report():
-    report = await Report.find().to_list()
+    report = await Report.find(Report.report_status=="Approved").to_list()
     return {"message": report}
 
 
@@ -64,4 +65,20 @@ async def update_vote_score(report_body: UpdateReportVoteBody):
     await report.save()
     return {
         "message": f"report {body['report_id']} save successfully"
+    }
+
+@router.get('/get_alert/{last_report_timestamp}/{lat}/{lon}')
+async def get_alert(last_report_timestamp, lat, lon):
+    lst = []
+    last_reported = last_report_timestamp
+    queryed_report = await Report.find(Report.last_report!=last_report_timestamp, Report.last_report<last_report_timestamp).to_list()
+    for report in queryed_report:
+        if calculate_distance(lat, lon, report.lat, report.lon) < 4:
+            lst.append(report)
+            if report.last_report  > last_reported:
+                last_reported = report.last_report
+    return {
+        "message": "success",
+        "report": lst,
+        "last_report_timestamp": last_reported
     }

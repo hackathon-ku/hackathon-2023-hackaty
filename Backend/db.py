@@ -17,6 +17,7 @@ class Report(Document):
     location: Location
     description: str
     timestamp: datetime.datetime
+    last_report: Optional[datetime.datetime] = None
     priority: Optional[str] = "LOW"
     vote_score: int
     report_status: Optional[str] = "INBOX"
