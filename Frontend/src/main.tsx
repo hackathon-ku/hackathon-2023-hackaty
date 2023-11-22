@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import StudentMain from './StudentMain';
+import StudentMain from './pages/StudentMain';
 import Alert_map from './pages/Alert_map';
 import SosCall from './pages/SosCall';
 const router = createBrowserRouter([

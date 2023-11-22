@@ -6,8 +6,7 @@ const NavDescription = [
   { name: 'Home', icon: HouseSimple, path: '/' },
   { name: 'Nisit Card', icon: IdentificationCard, path: '' },
   { name: 'Check in', icon: QrCode, path: '' },
-  // TODO : Add path
-  { name: 'Emergency', icon: WarningCircle, path: '' },
+  { name: 'Emergency', icon: WarningCircle, path: '/sos-call' },
   { name: 'More', icon: DotsThreeOutline, path: '' },
 ] as const;
 
@@ -26,10 +25,11 @@ const StudentNav = () => {
         paddingBlock: '10px',
         display: 'flex',
         gap: '18px',
-        justifyContent: 'center',
+        width: '100vw',
+        maxWidth: '440px',
+        justifyContent: 'space-around',
         position: 'fixed',
         bottom: 0,
-        width: '400px',
       }}
     >
       {NavDescription.map((item) => (

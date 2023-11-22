@@ -13,14 +13,17 @@
     "@phosphor-icons/react": "^2.0.14",
     "antd": "^5.11.2",
     "axios": "^1.6.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^6.19.0"
   },
   "devDependencies": {
     "@types/google.maps": "^3.54.9",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/react-lottie": "^1.2.10",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",
