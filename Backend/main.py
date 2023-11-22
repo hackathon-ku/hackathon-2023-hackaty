@@ -42,9 +42,9 @@ def api():
 
 @app.get("/mock")
 async def mock_data():
-    tag = [{'name': 'น้ำท่วม'}, {'name': 'เตือนภัย'},
+    tags = [{'name': 'น้ำท่วม'}, {'name': 'เตือนภัย'},
            {'name': 'ถนน'}, {'name': 'ความปลอดภัย'}]
-    for x in tag:
+    for x in tags:
         await Tag.insert(Tag(**x))
 
     location = [{"lat": 42.941033134628, "lon":  153.794558983582}, {
@@ -54,12 +54,12 @@ async def mock_data():
         await Location.insert(Location(**y))
 
     report = {"title": "น้ำท่วม", "user": "user1",
-               "tag": [{'name': 'น้ำท่วม'}, {'name': 'เตือนภัย'}],
+               "tags": [{'name': 'น้ำท่วม'}, {'name': 'เตือนภัย'}],
                "location": {"lat": 42.941033134628, "lon":  153.794558983582},
                "description": "ช่วยด้วยย",
                "timestamp": '2023-11-22 11:49:10.833520',
-               "priority": 'LOW',
-               "is_approved": True,
+               "priority": 'Low',
+               "report_status": "Inbox",
                "vote_score": 12
                }
     

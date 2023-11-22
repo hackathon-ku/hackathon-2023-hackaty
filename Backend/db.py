@@ -13,12 +13,11 @@ class Location(Document):
 class Report(Document):
     title: str
     user: str
-    tag: List[Tag]
+    tags: List[Tag]
     location: Location
     description: str
     timestamp: datetime.datetime
-    priority: str
+    priority: Optional[str] = "LOW"
     vote_score: int
-    is_approved: bool
-    photo_url: Optional[str]
- 
+    report_status: Optional[str] = "INBOX"
+    photo_url: Optional[str] = None
