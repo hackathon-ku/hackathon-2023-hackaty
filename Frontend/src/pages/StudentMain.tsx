@@ -10,8 +10,8 @@ import {
 } from '@phosphor-icons/react';
 import { Button, Card, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import StudentLayout from './modules/common/StudentLayout';
-import StudentNav from './modules/common/StudentNav';
+import StudentLayout from '../modules/common/StudentLayout';
+import StudentNav from '../modules/common/StudentNav';
 // TODO Add path
 const menuNavigations = [
   {
