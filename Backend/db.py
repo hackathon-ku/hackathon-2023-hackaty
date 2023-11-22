@@ -21,3 +21,4 @@ class Report(Document):
     vote_score: int
     is_approved: bool
     photo_url: Optional[str]
+ 
