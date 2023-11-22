@@ -43,4 +43,5 @@ class UpdateReportBody(BaseModel):
 
 class UpdateReportVoteBody(BaseModel):
     user: str
+    report_id: str
     vote_score: str

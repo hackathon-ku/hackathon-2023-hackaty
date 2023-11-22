@@ -1,8 +1,7 @@
 from fastapi import APIRouter
-from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody
+from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
 from db import Report
 from datetime import datetime
-from bson import ObjectId
 
 
 router = APIRouter(
@@ -56,3 +55,13 @@ async def update_report(report_body: UpdateReportBody):
         "message": f"report {body['report_id']} save successfully"
     }
 
+
+@router.put('/update_vote_score', status_code=201)
+async def update_vote_score(report_body: UpdateReportVoteBody):
+    body = report_body.model_dump()
+    report = await Report.get(body['report_id'])
+    report.vote_score = body['vote_score']
+    await report.save()
+    return {
+        "message": f"report {body['report_id']} save successfully"
+    }
