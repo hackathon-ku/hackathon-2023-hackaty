@@ -8,12 +8,6 @@ interface emergencyContact {
 }
 
 function EmergencyCall(props: emergencyContact) {
-
-  const handlePhoneCall = (e: React.MouseEvent) => {
-    e.preventDefault()
-    window.location.href = `tel: ${props.phoneNumber}`
-  }
-
   return (
     <div 
         style={{
