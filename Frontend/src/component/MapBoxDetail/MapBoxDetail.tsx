@@ -1,7 +1,9 @@
 import React from 'react'
 import "./MapBoxDetail.css";
+import { MapDataLocationProps } from '../../interface/interface';
+import VoteBox from '../VoteBox';
 
-function TagBox({ text }: any) {
+function TagBox({ text }: { text: string }) {
     const style = {
         width: '46px',
         height: '22px',
@@ -23,23 +25,30 @@ function TagBox({ text }: any) {
 
 
 
-function MapBoxDetail({ selected }: any) {
+function MapBoxDetail({ selected }: { selected: MapDataLocationProps | null }) {
     const lst_tag = ["tag1", "tag2", "tag3"]
     return (
         <div className='map_box_container'>
-            {selected ? (selected.m_id) : (null)}
+            {/* {selected ? (selected.m_id) : (null)} */}
             <div style={{ margin: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <div style={{ fontWeight: "bold" }}>ฟุตบาตไม่เสมอ</div>
-                <div style={{ display: "flex", gap: "8px" }}>
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                     {lst_tag.map((item) => {
                         return (
                             <TagBox text={item} />
                         )
 
-                    })}</div>
+                    })}
+                </div>
 
+                <div style={{
+                    display: "flex", flexWrap: "wrap", wordWrap: "break-word"
+                }}>kfpefepkfwkfowkfowkfowkokokfpekf</div>
 
             </div>
+            <VoteBox />
+
+
         </div>
 
 

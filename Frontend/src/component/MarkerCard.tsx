@@ -1,7 +1,8 @@
 import React from 'react';
 import "./FullMap.css";
-
-const MarkerCard = ({ data }: any) => {
+import { MapDataLocationProps } from '../interface/interface';
+Map
+const MarkerCard = ({ data }: { data: MapDataLocationProps }) => {
     return (
         `<div className="data">
             <div className="icon">

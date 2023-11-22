@@ -9,7 +9,7 @@ import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
 const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
 
-function toggleHighlight(markerView: any, property: any) {
+function toggleHighlight(markerView: any, property: MapDataLocationProps) {
     if (markerView.content.classList.contains("highlight")) {
         markerView.content.classList.remove("highlight");
         markerView.zIndex = null;
@@ -20,7 +20,7 @@ function toggleHighlight(markerView: any, property: any) {
 }
 
 
-function buildContent(data: any) {
+function buildContent(data: MapDataLocationProps) {
     const content = document.createElement("div");
     content.classList.add("property");
     content.innerHTML = `
