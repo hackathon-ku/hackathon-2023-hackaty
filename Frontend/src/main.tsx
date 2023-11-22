@@ -38,6 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         token: {
           colorPrimary: '#277875',
           colorInfo: '#277875',
+          fontFamily: 'Roboto,Prompt, sans-serif',
         },
       }}
     >
