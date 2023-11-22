@@ -9,7 +9,9 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:00:00Z",
         "Status": true,
         "Priority": "high",
-        "vote_score": 10
+        "vote_score": 10,
+        "title": "fwfooo"
+
     },
     {
         "m_id": "id2",
@@ -21,7 +23,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:05:00Z",
         "Status": false,
         "Priority": "medium",
-        "vote_score": 20
+        "vote_score": 20,
+        "title": "ดำทดนำด"
     },
 
     {
@@ -34,7 +37,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:10:00Z",
         "Status": true,
         "Priority": "low",
-        "vote_score": 15
+        "vote_score": 15,
+        "title": "เกท"
     },
     {
         "m_id": "id4",
@@ -46,7 +50,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:15:00Z",
         "Status": false,
         "Priority": "high",
-        "vote_score": -5
+        "vote_score": -5,
+        "title": "fff"
     },
     {
         "m_id": "id5",
@@ -58,7 +63,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:20:00Z",
         "Status": true,
         "Priority": "medium",
-        "vote_score": 25
+        "vote_score": 25,
+        "title": "tooo"
     },
     {
         "m_id": "id6",
@@ -71,6 +77,8 @@ const Map_data = [
         "Status": false,
         "Priority": "low",
         "vote_score": 5
+        ,
+        "title": "tooo"
     },
     {
         "m_id": "id7",
@@ -82,7 +90,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:30:00Z",
         "Status": true,
         "Priority": "high",
-        "vote_score": 30
+        "vote_score": 30,
+        "title": "tooo"
     },
     {
         "m_id": "id8",
@@ -94,7 +103,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:35:00Z",
         "Status": false,
         "Priority": "medium",
-        "vote_score": -10
+        "vote_score": 1,
+        "title": "tooo"
     },
     {
         "m_id": "id9",
@@ -106,7 +116,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:40:00Z",
         "Status": true,
         "Priority": "low",
-        "vote_score": 35
+        "vote_score": 35,
+        "title": "tooo"
     },
     {
         "m_id": "id10",
@@ -118,7 +129,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:45:00Z",
         "Status": false,
         "Priority": "high",
-        "vote_score": 40
+        "vote_score": 40,
+        "title": "tooo"
     },
     {
         "m_id": "id11",
@@ -130,7 +142,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:50:00Z",
         "Status": true,
         "Priority": "medium",
-        "vote_score": -15
+        "vote_score": -1,
+        "title": "tooo"
     },
     {
         "m_id": "id12",
@@ -142,7 +155,8 @@ const Map_data = [
         "time_stamp": "2023-11-22T10:55:00Z",
         "Status": false,
         "Priority": "low",
-        "vote_score": 20
+        "vote_score": 20,
+        "title": "tooo"
     }
 
 

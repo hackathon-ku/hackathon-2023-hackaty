@@ -102,7 +102,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
         loadMap();
     }, [location, setLocation]);
 
-    return <div ref={mapRef} style={{ width: "100vw", height: "70vh" }} />;
+    return <div ref={mapRef} style={{ width: "100vw", height: "77vh" }} />;
 };
 
 export default Fullmap;

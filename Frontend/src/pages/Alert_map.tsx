@@ -28,7 +28,7 @@ function Alert_map() {
     return (
         <StudentLayout>
             <div style={{ position: "relative", overflow: "hidden" }}>{location ?
-                (<Fullmap location={location} setLocation={setLocation} setSelected={setSelected} mapData={Map_data} isStatus={false} />) :
+                (<Fullmap location={location} setLocation={setLocation} setSelected={setSelected} mapData={Map_data} isStatus={true} />) :
 
                 (<div style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}>Loading</div>)}
                 <MapBoxDetail selected={selected} />
