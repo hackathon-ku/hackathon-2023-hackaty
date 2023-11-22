@@ -9,7 +9,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
   },
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -17,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#006664',
-          colorInfo: '#006664',
+          colorPrimary: '#277875',
+          colorInfo: '#277875',
         },
       }}
     >
