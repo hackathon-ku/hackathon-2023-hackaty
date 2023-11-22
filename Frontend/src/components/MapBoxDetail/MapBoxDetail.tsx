@@ -1,9 +1,10 @@
 import React from 'react'
 import "./MapBoxDetail.css";
-import { MapDataLocationProps } from '../../interface/interface';
+import { MapDataLocationProps, TagProps } from '../../interface/interface';
 import VoteBox from '../VoteBox';
+import { TabPaneProps } from 'antd';
 
-function TagBox({ text }: { text: string }) {
+function TagBox({ text }: { text: TagProps }) {
     const style = {
         padding: '1px 8px',
         gap: '3px',
@@ -18,7 +19,7 @@ function TagBox({ text }: { text: string }) {
 
     return (
         <div style={style}>
-            {text}
+            {text.name}
         </div>
     );
 }
@@ -30,11 +31,10 @@ function MapBoxDetail({ selected }: { selected: MapDataLocationProps | null }) {
     const points = selected?.vote_score || 0;
     return (
         <div className='map_box_container'>
-            {/* {selected ? (selected.m_id) : (null)} */}
             <div style={{ margin: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <div style={{ fontWeight: "bold" ,fontSize:"1rem" }}>ฟุตบาตไม่สม่ำเสมอ</div>
-                <div style={{ display: "flex",  flexWrap: "wrap" }}>
-                    {lst_tag.map((item) => {
+                <div style={{ fontWeight: "bold", fontSize: "1rem" }}>{selected?.title}</div>
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {selected?.tags.map((item) => {
                         return (
                             <TagBox text={item} />
                         )
@@ -45,8 +45,8 @@ function MapBoxDetail({ selected }: { selected: MapDataLocationProps | null }) {
                 <div style={{
                     flexWrap: "wrap", wordWrap: "break-word", wordBreak: "break-all", textOverflow: " ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 3, overflow: "hidden", fontSize: "14px"
 
-                }}>ฟุตบาทไม่สม่ำเสมอเลยฟุตบาทไม่สม่ำเสมอเลยฟุdwkdowjodjwodjwodjowjdowjdowjdojwodjwodjwตบาทไม่สม่ำเสมอเลยฟตบาทไม่สม่ำเสมอเลยฟุตบาทไม่สม่ำเสมอเลย</div>
-                <div style={{ color: "#00000073" }}>ถนนงามวงศ์วาน</div>
+                }}>{selected?.desci}</div>
+                <div style={{ color: "#00000073" }}>({selected?.lat}, {selected?.lon})</div>
             </div>
             <VoteBox points={points} />
 

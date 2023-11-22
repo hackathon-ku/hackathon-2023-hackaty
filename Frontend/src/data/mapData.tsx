@@ -10,7 +10,7 @@ const Map_data = [
         "Status": true,
         "Priority": "high",
         "vote_score": 10,
-        "title": "fwfooo"
+        "title": "1KUB"
 
     },
     {

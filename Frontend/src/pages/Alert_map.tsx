@@ -16,6 +16,9 @@ function Alert_map() {
                 lng: position.coords.longitude,
             });
         });
+        if (!selected) {
+            setSelected(Map_data[0])
+        }
     }, []);
 
 
@@ -28,7 +31,7 @@ function Alert_map() {
                         setLocation={setLocation}
                         setSelected={setSelected}
                         mapData={Map_data}
-                        isStatus={false}
+                        isStatus={true}
                     />
                 ) : (
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>Loading</div>
