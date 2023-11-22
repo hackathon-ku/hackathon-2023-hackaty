@@ -2,21 +2,19 @@ import { ConfigProvider } from 'antd';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
 import './index.css';
+import StudentMain from './StudentMain';
 import Alert_map from './page/Alert_map';
-
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-  },
   {
     path: '/alert-map',
     element: <Alert_map />,
   },
   
-  
+    {
+    path: '/',
+    element: <StudentMain />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -24,8 +22,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#006664',
-          colorInfo: '#006664',
+          colorPrimary: '#277875',
+          colorInfo: '#277875',
         },
       }}
     >
