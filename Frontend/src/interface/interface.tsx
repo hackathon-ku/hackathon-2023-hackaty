@@ -3,7 +3,6 @@ export interface CoordinateProps {
     lng: number;
 }
 
-
 export interface MapDataLocationProps {
     m_id: string;
     user: null;

@@ -28,6 +28,8 @@ function Alert_map() {
             setSelected={setSelected}
             mapData={Map_data}
             isStatus={false}
+            width={'100vw'}
+            height={'70vh'}
           />
         ) : (
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>Loading</div>
