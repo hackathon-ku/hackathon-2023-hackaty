@@ -5,6 +5,7 @@ const StudentLayout = ({ children }: { children: React.ReactNode }) => {
         minHeight: '100dvh',
         maxWidth: '440px',
         marginInline: 'auto',
+        paddingBottom: '10vh',
       }}
     >
       {children}
