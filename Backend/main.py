@@ -44,8 +44,8 @@ def api():
 async def mock_data():
     tag = [{'name': 'น้ำท่วม'}, {'name': 'เตือนภัย'},
            {'name': 'ถนน'}, {'name': 'ความปลอดภัย'}]
-    # for x in tag:
-    #     await Tag.insert(Tag(**x))
+    for x in tag:
+        await Tag.insert(Tag(**x))
 
     location = [{"lat": 42.941033134628, "lon":  153.794558983582}, {
         "lat": 24.078036436108, "lon": -120.782015917934}]
@@ -59,8 +59,9 @@ async def mock_data():
                "description": "ช่วยด้วยย",
                "timestamp": '2023-11-22 11:49:10.833520',
                "priority": 'LOW',
+               "is_approved": True,
                "vote_score": 12
                }
     
     await Report.insert(Report(**report))
-    return "ddd"
+    return {"message": "Mock data successfully"}
