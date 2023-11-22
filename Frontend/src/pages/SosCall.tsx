@@ -1,5 +1,5 @@
 import React from 'react';
-import Lottie from 'react-lottie'
+import Lottie from 'react-lottie';
 import EmergencyCall from '../components/EmergencyCall';
 import FirstAid from '../assets/images/sos_call/FirstAid.svg';
 import PoliceCar from '../assets/images/sos_call/PoliceCar.svg';
@@ -8,37 +8,36 @@ import Headset from '../assets/images/sos_call/Headset.svg';
 import PhoneOutgoing from '../assets/images/sos_call/PhoneOutgoing.svg';
 import StudentLayout from '../modules/common/StudentLayout';
 import StudentNav from '../modules/common/StudentNav';
-import phoneAnimation from '../lotties/Animation - 1700636991063.json'
+import phoneAnimation from '../lotties/Animation - 1700636991063.json';
 import '../pages/SosCall.css';
+import { Typography } from 'antd';
 
 function SosCall() {
-
   const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: phoneAnimation,
-        rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice"
-      }
+    loop: true,
+    autoplay: true,
+    animationData: phoneAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
     <StudentLayout>
       <div style={{ position: 'relative', height: '14vh' }} className="emergency-call">
-        <p
+        <Typography.Title
+          level={3}
           style={{
             position: 'absolute',
             left: '0',
             bottom: '0',
-            marginLeft: '2vw',
+            marginLeft: '24px',
             marginBottom: '3vh',
-            fontSize: '24px',
-            fontWeight: 'bold',
             color: 'white',
           }}
         >
           Emergency Call
-        </p>
+        </Typography.Title>
       </div>
       <div
         style={{
@@ -46,32 +45,27 @@ function SosCall() {
         }}
       >
         <div
-            style={{
-                height: '31vh',
-                textAlign: 'center',
-            }}
-            > 
-            {/* 087-096-6531 */}
-            <a href="tel: 087-096-6531">
-                <Lottie 
-                    options={defaultOptions} 
-                    height={250} 
-                    width={250}
-                />
-            </a>  
+          style={{
+            height: '31vh',
+            textAlign: 'center',
+          }}
+        >
+          {/* 087-096-6531 */}
+          <a href="tel: 087-096-6531">
+            <Lottie options={defaultOptions} height={250} width={250} />
+          </a>
         </div>
         <div>
-          <h2
+          <Typography.Title
+            level={5}
             style={{
-              fontSize: '24px',
-              fontWeight: 'bold',
-              marginLeft: '1vw',
-              marginBottom: '3vh',
+              marginLeft: '24px',
+              marginBottom: '16px',
             }}
           >
             Emergency Contact
-          </h2>
-          <div style={{paddingBottom: '10vh'}}>
+          </Typography.Title>
+          <div style={{ paddingBottom: '10vh' }}>
             <EmergencyCall
               logoPath={FirstAid}
               name={'Clinic Kasetsart University'}
@@ -99,7 +93,7 @@ function SosCall() {
           </div>
         </div>
       </div>
-      <StudentNav/>
+      <StudentNav />
     </StudentLayout>
   );
 }
