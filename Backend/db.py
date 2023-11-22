@@ -7,4 +7,7 @@ client = MongoClient(
     tlsAllowInvalidCertificates=True,
 )
 
-mongo_connection = client['Report']
+mongo_connection = client['Hackaty']
+
+report_connection = mongo_connection['Report']
+tag_connection = mongo_connection['Tag']
