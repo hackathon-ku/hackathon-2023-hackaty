@@ -3,8 +3,9 @@ const StudentLayout = ({ children }: { children: React.ReactNode }) => {
     <div
       style={{
         minHeight: '100dvh',
-        maxWidth: '400px',
+        maxWidth: '440px',
         marginInline: 'auto',
+        paddingBottom: '10vh',
       }}
     >
       {children}
