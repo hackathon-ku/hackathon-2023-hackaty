@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from model import CreateUserReportBody, CreateAdminReportBody
+from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody
 from db import Report
 from datetime import datetime
 
@@ -40,4 +40,16 @@ async def create_admin_report(createbody: CreateAdminReportBody):
     return {
         "message": "create successfully",
         "data": report
+    }
+
+
+@router.put('/update', status_code=201)
+async def update_report(report_body: UpdateReportBody):
+    body = report_body.model_dump()
+    old_report = await Report.find_one(user=body.user, _id=body.report_id)
+    old_report.priority = body.priority
+    old_report.status = body.status
+    await old_report.save()
+    return {
+        "message": f"report {old_report._id} save successfully"
     }

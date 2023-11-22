@@ -1,7 +1,6 @@
-import datetime
-
 from pydantic import BaseModel
 from typing import List, Optional
+from bson import ObjectId
 
 
 class TagBody(BaseModel):
@@ -31,3 +30,13 @@ class CreateAdminReportBody(BaseModel):
     priority: Optional[str] = None
     report_status: Optional[str] = "Approved"
     photo_url: Optional[str] = None
+
+
+class UpdateReportBody(BaseModel):
+    user: str
+    report_id: ObjectId
+    report_status: Optional[str] = None
+    priority: Optional[str] = None
+
+    class Config:
+        arbitrary_types_allowed = True
