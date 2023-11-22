@@ -37,10 +37,12 @@ function EmergencyCall(props: emergencyContact) {
             <p style={{marginBottom: '1vh'}}>{props.name}</p>
             <p>{props.phoneNumber}</p>
         </div>
-        <img src={props.phoneLogoPath} alt="phone-logo" onClick={handlePhoneCall} style={{
+        <a href={props.phoneNumber} style={{
             marginLeft: 'auto',
             marginRight: '1vw'
-        }} />
+        }}>
+            <img src={props.phoneLogoPath} alt="phone-logo"/>
+        </a>
     </div>
   )
 }
