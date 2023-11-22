@@ -4,16 +4,20 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import StudentMain from './StudentMain';
-import Alert_map from './page/Alert_map';
+import Alert_map from './pages/Alert_map';
+import SosCall from './pages/SosCall';
 const router = createBrowserRouter([
   {
     path: '/alert-map',
     element: <Alert_map />,
   },
-  
-    {
+  {
     path: '/',
     element: <StudentMain />,
+  },
+  {
+    path: '/sos-call',
+    element: <SosCall />,
   },
 ]);
 
