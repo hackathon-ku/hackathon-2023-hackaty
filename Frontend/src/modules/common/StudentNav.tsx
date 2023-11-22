@@ -26,10 +26,11 @@ const StudentNav = () => {
         paddingBlock: '10px',
         display: 'flex',
         gap: '18px',
-        justifyContent: 'center',
+        width: '100vw',
+        maxWidth: '440px',
+        justifyContent: 'space-around',
         position: 'fixed',
         bottom: 0,
-        width: '400px',
       }}
     >
       {NavDescription.map((item) => (
