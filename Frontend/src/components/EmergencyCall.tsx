@@ -1,4 +1,7 @@
 import React from 'react'
+import { Space, Typography } from 'antd';
+
+const { Text, Link } = Typography;
 
 interface emergencyContact {
     logoPath: string;
@@ -36,7 +39,7 @@ function EmergencyCall(props: emergencyContact) {
                 marginLeft: '2vw'
             }}>
                 <p style={{marginBottom: '1vh'}}>{props.name}</p>
-                <p>{props.phoneNumber}</p>
+                <Text type="secondary">{props.phoneNumber}</Text>
             </div>
             <img src={props.phoneLogoPath} alt="phone-logo" style={{
                 marginLeft: 'auto',
