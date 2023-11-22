@@ -1,10 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { ConfigProvider } from 'antd';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import './index.css';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+  
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#006664',
+          colorInfo: '#006664',
+        },
+      }}
+    >
+      <RouterProvider router={router} />
+    </ConfigProvider>
   </React.StrictMode>,
-)
+);
