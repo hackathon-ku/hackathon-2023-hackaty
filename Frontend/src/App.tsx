@@ -1,11 +1,12 @@
 import { Alert, Button, Flex, Form, Input, Radio, Space, Typography } from 'antd';
-import './App.css';
 import StudentLayout from './modules/common/StudentLayout';
+import SosCall from './pages/SosCall'
+import './App.css';
 
 function App() {
   return (
     <>
-      <StudentLayout>
+      {/* <StudentLayout>
         <Typography.Title level={1}>Student view</Typography.Title>
         <Flex gap="small" wrap="wrap">
           <Button type="primary">Primary Button</Button>
@@ -37,9 +38,8 @@ function App() {
           <Alert message="Warning Text" type="warning" />
           <Alert message="Error Text" type="error" />
         </Space>
-      </StudentLayout>
-
-      
+      </StudentLayout> */}
+      <SosCall />
     </>
   );
 }
