@@ -18,6 +18,6 @@ class CreateReportBody(BaseModel):
     tag: List[TagBody]
     location: LocationBody
     description: str
-    priority: Optional[str]
-    photo_url: Optional[str]
+    priority: Optional[str] = None
+    photo_url: Optional[str] = None
 

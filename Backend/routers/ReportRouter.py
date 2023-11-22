@@ -23,3 +23,9 @@ async def create_report(createbody: CreateReportBody):
         "message": "created successfully",
         "data": report
     }
+
+
+@router.get('/find_all')
+async def find_report():
+    report = await Report.find().to_list()
+    return {"message": report}

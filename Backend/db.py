@@ -17,7 +17,7 @@ class Report(Document):
     location: Location
     description: str
     timestamp: datetime.datetime
-    priority: str
+    priority: Optional[str] = "LOW"
     vote_score: int
-    is_approved: bool
-    photo_url: Optional[str]
+    is_approved: Optional[bool] = False
+    photo_url: Optional[str] = None
