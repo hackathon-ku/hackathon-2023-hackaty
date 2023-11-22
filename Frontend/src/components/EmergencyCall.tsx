@@ -8,31 +8,38 @@ interface emergencyContact {
 }
 
 function EmergencyCall(props: emergencyContact) {
+
+  const handlePhoneCall = (e: React.MouseEvent) => {
+    e.preventDefault()
+    window.location.href = `tel: ${props.phoneNumber}`
+  }
+
   return (
     <div 
         style={{
             display: 'flex',
             borderRadius: '15px',
             alignItems: 'center',
+            marginLeft: '2vh',
+            marginRight: '2vh',
             marginTop: '1vh',
             marginBottom: '1vh',
             background: 'white',
-            height: '6.5vh'
+            height: '8vh',
         }}
     >
         <img src={props.logoPath} alt="logo" style={{
-            marginLeft: '4vw'
+            marginLeft: '1vw'
         }} />
         <div style={{
-            marginLeft: '5vw'
+            marginLeft: '2vw'
         }}>
-            <p>{props.name}</p>
+            <p style={{marginBottom: '1vh'}}>{props.name}</p>
             <p>{props.phoneNumber}</p>
         </div>
-        <img src={props.phoneLogoPath} alt="phone-logo" style={{
-            position:'absolute', 
-            right: '0',
-            marginRight: '10vw'
+        <img src={props.phoneLogoPath} alt="phone-logo" onClick={handlePhoneCall} style={{
+            marginLeft: 'auto',
+            marginRight: '1vw'
         }} />
     </div>
   )
