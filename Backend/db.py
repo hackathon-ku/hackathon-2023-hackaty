@@ -13,7 +13,7 @@ class Location(Document):
 class Report(Document):
     title: str
     user: str
-    tag: List[Tag]
+    tags: List[Tag]
     location: Location
     description: str
     timestamp: datetime.datetime
