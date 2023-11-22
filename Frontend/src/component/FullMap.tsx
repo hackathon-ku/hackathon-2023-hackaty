@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import "./FullMap.css";
 import Map_data from '../data/mapData';
+import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
+// import { CoordinateProps, MapDataLocationProps } from '../pages/Alert_map';
+
 
 const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
@@ -49,10 +52,16 @@ function buildContent(data: any) {
 
     return content;
 }
-const Fullmap = ({ location, setLocation, setSelected }: any) => {
+const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
+    location: CoordinateProps,
+    setLocation: React.Dispatch<React.SetStateAction<CoordinateProps | null>>,
+    setSelected: React.Dispatch<React.SetStateAction<MapDataLocationProps | null>>,
+    mapData: MapDataLocationProps[],
+    isStatus: boolean
+
+}) => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<google.maps.Map | null>(null);
-
     useEffect(() => {
         const loadMap = async () => {
             if (!mapRef.current) return;
@@ -68,7 +77,8 @@ const Fullmap = ({ location, setLocation, setSelected }: any) => {
                 title: 'Uluru'
             });
 
-            Map_data?.map((data, index) => {
+            //marker
+            mapData?.map((data, index) => {
                 console.log(data)
                 const marker = new AdvancedMarkerElement({
                     map: initializedMap,
@@ -79,7 +89,7 @@ const Fullmap = ({ location, setLocation, setSelected }: any) => {
 
                 // Add a click listener to each marker instance
                 marker.addListener("click", () => {
-                    toggleHighlight(marker, data);
+                    { isStatus ? toggleHighlight(marker, data) : null }
                     setSelected(data);
                     console.log(data)
 
@@ -92,7 +102,7 @@ const Fullmap = ({ location, setLocation, setSelected }: any) => {
         loadMap();
     }, [location, setLocation]);
 
-    return <div ref={mapRef} style={{ width:"100vw", height:"70vh"}} />;
+    return <div ref={mapRef} style={{ width: "100vw", height: "70vh" }} />;
 };
 
 export default Fullmap;
