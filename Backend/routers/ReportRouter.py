@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody
 from db import Report
 from datetime import datetime
+from bson import ObjectId
+
 
 router = APIRouter(
     prefix="/api/report",
@@ -46,10 +48,11 @@ async def create_admin_report(createbody: CreateAdminReportBody):
 @router.put('/update', status_code=201)
 async def update_report(report_body: UpdateReportBody):
     body = report_body.model_dump()
-    old_report = await Report.find_one(user=body.user, _id=body.report_id)
-    old_report.priority = body.priority
-    old_report.status = body.status
+    old_report = await Report.get(body['report_id'])
+    old_report.priority = body['priority']
+    old_report.report_status = body['report_status']
     await old_report.save()
     return {
-        "message": f"report {old_report._id} save successfully"
+        "message": f"report {body['report_id']} save successfully"
     }
+

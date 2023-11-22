@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import List, Optional
-from bson import ObjectId
 
 
 class TagBody(BaseModel):
@@ -34,9 +33,14 @@ class CreateAdminReportBody(BaseModel):
 
 class UpdateReportBody(BaseModel):
     user: str
-    report_id: ObjectId
+    report_id: str
     report_status: Optional[str] = None
     priority: Optional[str] = None
 
     class Config:
         arbitrary_types_allowed = True
+
+
+class UpdateReportVoteBody(BaseModel):
+    user: str
+    vote_score: str
