@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Alert, Button, Flex, Form, Input, Radio, Space, Typography } from 'antd';
+import './App.css';
+import StudentLayout from './modules/common/StudentLayout';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <StudentLayout>
+        <Typography.Title level={1}>Student view</Typography.Title>
+        <Flex gap="small" wrap="wrap">
+          <Button type="primary">Primary Button</Button>
+          <Button>Default Button</Button>
+          <Button type="dashed">Dashed Button</Button>
+          <Button type="text">Text Button</Button>
+          <Button type="link">Link Button</Button>
+        </Flex>
+        <Form layout="horizontal" initialValues={{ layout: 'horizontal' }}>
+          <Form.Item label="Form Layout" name="layout">
+            <Radio.Group>
+              <Radio.Button value="horizontal">Horizontal</Radio.Button>
+              <Radio.Button value="vertical">Vertical</Radio.Button>
+              <Radio.Button value="inline">Inline</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item label="Field A">
+            <Input placeholder="input placeholder" />
+          </Form.Item>
+          <Form.Item label="Field B">
+            <Input placeholder="input placeholder" />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary">Submit</Button>
+          </Form.Item>
+        </Form>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <Alert message="Success Text" type="success" />
+          <Alert message="Warning Text" type="warning" />
+          <Alert message="Error Text" type="error" />
+        </Space>
+      </StudentLayout>
+
+      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
