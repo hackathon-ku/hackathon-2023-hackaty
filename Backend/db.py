@@ -1,13 +1,21 @@
-from decouple import config
-from pymongo import MongoClient
+from beanie import Document
+import datetime
+from typing import List
 
-client = MongoClient(
-    config("MONGO_URL", cast=str, default="mongodb://localhost:27017"),
-    tls=True,
-    tlsAllowInvalidCertificates=True,
-)
+class Tag(Document):
+    name: str
 
-mongo_connection = client['Hackaty']
+class Location(Document):
+    lat: float
+    lon: float
 
-report_connection = mongo_connection['Report']
-tag_connection = mongo_connection['Tag']
+
+class Report(Document):
+    title: str
+    user: str
+    tag: List[Tag]
+    location: Location
+    description: str
+    timestamp: datetime.datetime
+    priority: str
+    vote_score: int
