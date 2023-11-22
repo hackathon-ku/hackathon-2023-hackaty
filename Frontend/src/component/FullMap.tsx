@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import "./FullMap.css";
-import Map_data from '../data/MapData';
+import Map_data from '../data/mapData';
 
 const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
 const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
@@ -92,7 +92,7 @@ const Fullmap = ({ location, setLocation, setSelected }: any) => {
         loadMap();
     }, [location, setLocation]);
 
-    return <div ref={mapRef} style={{ height: '100vh', width: '100%' }} />;
+    return <div ref={mapRef} style={{ width:"100vw", height:"70vh"}} />;
 };
 
 export default Fullmap;

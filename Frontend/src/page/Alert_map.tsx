@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Fullmap from '../component/FullMap';
-import Map_data from '../data/MapData';
+import Map_data from '../data/mapData';
+import MapBoxDetail from '../component/MapBoxDetail/MapBoxDetail';
 
 
 // import { CoordinateProps } from '../interface_map/interface_map';
@@ -25,13 +26,11 @@ function Alert_map() {
 
 
     return (
-        <div style={{ position: "relative" }}>{location ?
+        <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>{location ?
             (<Fullmap location={location} setLocation={setLocation} setSelected={setSelected} />) :
 
             (<div style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}>Loading</div>)}
-            <div style={{ position: "absolute", top: "70%", left: "0", width: "100%", height: "30%", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "white", border: "#C3D4E2 solid" }}>
-                {selected ? (selected.m_id) : (null)}</div>
-
+            <MapBoxDetail selected={selected} />
         </div>
     )
 }
