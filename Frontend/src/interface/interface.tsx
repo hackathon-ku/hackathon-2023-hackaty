@@ -18,5 +18,6 @@ export interface MapDataLocationProps {
 }
 
 export interface TagProps {
+    _id : string;
     name: string;
 }
