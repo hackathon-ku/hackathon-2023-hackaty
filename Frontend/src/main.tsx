@@ -9,12 +9,8 @@ import SosCall from './pages/SosCall';
 import UserReportPage from './pages/UserReportPage';
 import SosAdmin from './pages/SosAdmin';
 import AlertMapForm from './pages/AlertMapForm';
-import MapModal from './components/MapModal/MapModal';
-import CoordinateMap from './components/MapModal/CoordinateMap';
 const router = createBrowserRouter([
   {
-
-
     path: '/',
     element: <StudentMain />,
   },
@@ -34,13 +30,7 @@ const router = createBrowserRouter([
     path: '/sos-admin',
     element: <SosAdmin />,
   },
-
-  {
-    path: '/test',
-    element: <MapModal />,
-  },
-
-
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

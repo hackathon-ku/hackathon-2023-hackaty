@@ -4,8 +4,8 @@ import MapBoxDetail from '../components/MapBoxDetail/MapBoxDetail';
 import StudentLayout from '../modules/common/StudentLayout';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
 import Fullmap from '../components/FullMap';
-import { FormOutlined, LeftOutlined, CaretUpOutlined, MinusOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { FormOutlined, LeftOutlined, CaretUpOutlined } from '@ant-design/icons';
+import { Button, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import "./Alert_map.css";
 
@@ -61,23 +61,15 @@ function Alert_map() {
                             isStatus={true}
                         />
                     ) : (
-                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>Loading</div>
+                        <div style={{ display: 'flex', justifyContent: 'center', height: "77vh", alignItems: "center", backgroundColor: "#dedede", borderRadius: "1rem" }}>
+                            <Spin size="large" />
+                        </div>
                     )}
 
                 </div>
-                {/* <div style={{ position: "absolute", zIndex: "3", bottom: "0", left: "0", width: "100%" }}>
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", padding: "1rem", background: "#FFFFFF", boxShadow: "0px -2px 0px 0px rgba(0, 0, 0, 0.04)" }}>
-                        <div style={{ fontWeight: "bold", fontSize: "1rem" }}>{selected?.title}</div>
-                        <div style={{ color: "#00000073" }}>({selected?.lat}, {selected?.lon})</div>
-                    </div>
-                </div> */}
 
-                {/* <Button type="text" block style={{ position: "absolute", zIndex: "4", top: "70%" , width:"20%"}}>
-                    <CaretUpOutlined  />
-                </Button> */}
                 <Button id='btn_up'
                     style={{ position: "absolute", zIndex: "4", color: "#7F7F7F", transition: "transform 0.5s ease-in", width: "100%", maxHeight: "1rem" }}
-                    // icon={<MinusOutlined />}
                     type='text'
                     icon={<CaretUpOutlined />}
                     onClick={() => {
