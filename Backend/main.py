@@ -21,7 +21,7 @@ app.add_middleware(
 
 app.include_router(ReportRouter.router)
 
-
+ 
 @app.on_event('startup')
 async def connect_db():
     client = AsyncIOMotorClient(
