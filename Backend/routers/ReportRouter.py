@@ -97,7 +97,7 @@ async def get_alert(last_report_timestamp, lat, lon):
     for report in all_report:
         if report.last_report_time is None:
             continue
-        if isinstance(last_reported, str):
+        if isinstance(last_reported, str) and last_reported != '':
             last_reported = datetime.fromisoformat(last_reported[:-6])
         if last_report_timestamp is not None:
             distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
