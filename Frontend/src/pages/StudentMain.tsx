@@ -8,10 +8,12 @@ import {
   Link,
   Megaphone,
 } from '@phosphor-icons/react';
-import { Button, Card, Typography } from 'antd';
+import { Alert, Button, Card, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import StudentLayout from '../modules/common/StudentLayout';
 import StudentNav from '../modules/common/StudentNav';
+import { useEffect } from 'react';
+import axios from 'axios';
 // TODO Add path
 const menuNavigations = [
   {
@@ -76,6 +78,20 @@ const favLink = [
 ];
 function StudentMain() {
   const navigate = useNavigate();
+  // fetch alert notification
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const last_report_timestamp = localStorage.getItem('last_report_timestamp');
+      axios
+        .get(`https://hackaty.onrender.com/api/report/get_alert/${last_report_timestamp}/${'lat'}/${'lon'}`)
+        .then((res: any) => {
+          console.log('This', res?.data?.message);
+        });
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect;
   return (
     <>
       <StudentLayout>
@@ -144,6 +160,7 @@ function StudentMain() {
             ))}
           </div>
           {/* TODO Add Alert */}
+          <Alert message="Warning" type="warning" closable />
           {/* ---------------------------------- News ---------------------------------- */}
           <div>
             <div style={{ display: 'flex', width: 'auto', justifyContent: 'space-between' }}>
