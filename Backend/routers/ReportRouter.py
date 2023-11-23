@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
-from db import Report, Tag
+from db import Report
 from datetime import datetime
 from utils import calculate_distance_linear, is_later_than
 import pytz
@@ -107,13 +107,5 @@ async def get_alert(last_report_timestamp, lat, lon):
         "message": "success",
         "report": lst,
         "last_report_timestamp": last_reported
-    }
-
-
-@router.get('/tag/all')
-async def get_tags():
-    tag = await Tag.find()
-    return {
-        "all_tag": tag
     }
 
