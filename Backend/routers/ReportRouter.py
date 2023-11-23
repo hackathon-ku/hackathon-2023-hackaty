@@ -91,17 +91,9 @@ async def get_alert(last_report_timestamp, lat, lon):
     for report in all_report:
         if report.last_report_time is None:
             continue
-
-            # Convert report.last_report_time to the appropriate datetime format if necessary
-        report_last_time = report.last_report_time
-        if isinstance(report_last_time, str):
-            report_last_time = datetime.fromisoformat(
-                report_last_time).replace(tzinfo=pytz.UTC)
         distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
-        # if distance < 4
         if is_later_than(report.last_report_time, last_report_timestamp):
-            report_dict = report if isinstance(report, dict) else report.model_dump()
-            lst.append({**report_dict, "distance": distance})
+            lst.append({**report.model_dump(), "distance": distance})
             if is_later_than(report.last_report_time, last_reported):
                 last_reported = report.last_report_time
     return {
