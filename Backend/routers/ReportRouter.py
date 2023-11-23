@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
 from db import Report
 from datetime import datetime
-from utils import calculate_distance_linear
+from utils import calculate_distance_linear, is_later_than
 
 
 router = APIRouter(
@@ -32,7 +32,7 @@ async def create_user_report(createbody: CreateUserReportBody):
 
 @router.get('/find_all')
 async def find_report():
-    report = await Report.find(Report.report_status=="Approved").to_list()
+    report = await Report.find().to_list()
     return {"message": report}
 
 
@@ -64,7 +64,10 @@ async def update_report(report_body: UpdateReportBody):
 async def update_vote_score(report_body: UpdateReportVoteBody):
     body = report_body.model_dump()
     report = await Report.get(body['report_id'])
-    report.vote_score = body['vote_score']
+    if body['vote_score']:
+        report.vote_score += 1
+    else:
+        report.vote_score -=1
     await report.save()
     return {
         "message": f"report {body['report_id']} save successfully"
@@ -74,10 +77,12 @@ async def update_vote_score(report_body: UpdateReportVoteBody):
 async def get_alert(last_report_timestamp, lat, lon):
     lst = []
     last_reported = last_report_timestamp
-    queryed_report = await Report.find(Report.last_report!=last_report_timestamp, Report.last_report<last_report_timestamp).to_list()
-    for report in queryed_report:
-        if calculate_distance_linear(lat, lon, report.lat, report.lon) < 4:
-            lst.append(report)
+    all_report = await Report.find().to_list()
+
+    for report in all_report:
+        distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
+        if is_later_than(report.last_report, last_report_timestamp) and report.last_report <  distance < 4:
+            lst.append({**report, "distance": distance})
             if report.last_report  > last_reported:
                 last_reported = report.last_report
     return {
