@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Map_data from '../data/mapData';
 import Fullmap from '../components/FullMap';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
-import { Button, Modal, Typography } from 'antd';
+import { Button, Card, Typography, Statistic, Row, Col, Divider } from 'antd';
 import { MapBoxDetailAdmin } from '../components/MapBoxDetail/MapBoxDetail';
+import { PencilSimple } from '@phosphor-icons/react'
 import Write from '../assets/images/admin_page/write.svg';
 import Filter from '../assets/images/admin_page/filter.svg';
 import '../pages/SosAdmin.css'
@@ -28,28 +29,28 @@ const SosAdmin = () => {
             KU SOS ALERT CENTER
           </Typography.Title>
         </div>
-        <Modal 
-          open={true} 
-          closable={false}
-          footer={null}
-          width={651}
-          mask={false}
-          style={{top: 100, left: -220, height: '200px'}}
-        >
-          <div style={{display: 'grid', gap: '48px'}} >
-            <div>
-              <p>Unauthorized Reports</p>
-              <div style={{display: 'flex', alignItems: 'center'}}>
-                <Typography.Title level={3}>
-                  28
-                </Typography.Title>
-                <Typography>report</Typography>
+        <Card 
+          style={{position:"fixed",left:"160px",zIndex:"10",top:"126px",height: '164px', width: '651px', display: 'flex', alignItems: 'center'}}
+        > 
+          <Row>
+            <Col>
+              <Statistic title={'Unsuthorized Reports'} value={28} suffix={<p style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)'}}>report</p>} />
+            </Col>
+            <Divider type="vertical" style={{marginLeft: '24px', marginRight: '24px', height: '116px'}}/>
+            <Col>
+              <Statistic title={'Top Report Tags'} value={'น้ำท่วม 24'} suffix={<p style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)'}}>report</p>} />
+              <div><p style={{fontSize: '14px', fontWeight: 'bold'}}>การจราจรติดขัด 15, อุบัติเหตุ 7</p></div>
+            </Col>
+            <Divider type="vertical" style={{marginLeft: '24px', marginRight: '24px', height: '116px'}}/>
+            <Col>
+              <Statistic title={'Top Support Report'} value={240} suffix={<p style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)'}}>Supports</p>} />
+              <div>
+                <p style={{fontSize: '14px', fontWeight: 'bold'}}>ประตู3</p>
+                <p style={{fontSize: '14px', fontWeight: 'bold'}}>อยากให้ยามออก...</p>
               </div>
-            </div>
-            <div><p>Top Report Tags</p></div>
-            <div><p>Top Support Report</p></div>
-          </div>
-        </Modal>
+            </Col>
+          </Row>
+        </Card>
         <div style={{width: '70vw'}}>
           {location ? (
             <Fullmap
@@ -68,7 +69,7 @@ const SosAdmin = () => {
         </div>
       </div>
       <div style={{background: "#F5F5F5", width: '58.3pw'}}>
-        <div style={{display: 'flex', width: '420px', gap: '16px', padding: '35px 0px 35px 0px', marginLeft: '40px'}}>
+        <div style={{display: 'flex', width: '420px', gap: '16px', padding: '35px 2vw 0px 0px', marginLeft: '40px'}}>
             <Button style={{
               display: 'flex', 
               backgroundColor: '#277875', 
@@ -89,6 +90,7 @@ const SosAdmin = () => {
                 padding: '6.4px 15px',
               }}
               size='large'
+
             >
               <div style={{gap: '10px', display: 'flex', alignItems: 'center'}}>
                 <img src={Filter} alt="" style={{marginBottom: '6.4px'}} />
