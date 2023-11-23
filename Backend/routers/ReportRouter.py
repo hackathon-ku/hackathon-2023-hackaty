@@ -38,7 +38,7 @@ async def find_report():
 
 @router.get('/user/find_all')
 async def find_user_report():
-    report = await Report.find(Report.report_status == "Approve")
+    report = await Report.find(Report.report_status == "Approve").to_list()
     return {"message": report}
 
 
