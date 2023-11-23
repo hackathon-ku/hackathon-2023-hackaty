@@ -8,7 +8,7 @@
    */
   .property {
     align-items: center;
-    background-color: #bda21e;
+    background-color: rgb(228, 174, 24);
     border-radius: 50%;
     color: #263238;
     display: flex;
@@ -26,7 +26,7 @@
   .property::after {
     border-left: 9px solid transparent;
     border-right: 9px solid transparent;
-    border-top: 9px solid rgb(161, 76, 53);
+    border-top: 9px solid rgb(222, 170, 27);
     content: "";
     height: 0;
     left: 50%;

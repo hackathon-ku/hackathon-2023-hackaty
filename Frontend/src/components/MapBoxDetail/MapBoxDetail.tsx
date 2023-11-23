@@ -31,7 +31,8 @@ function MapBoxDetail({ selected }: { selected: MapDataLocationProps | null }) {
     const points = selected?.vote_score || 0;
     return (
         <div className='map_box_container'>
-            <div style={{ margin: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+           
+            <div style={{ margin: "1rem", display: "flex", flexDirection: "column", gap: "1rem"  ,zIndex:"2"}}>
                 <div style={{ fontWeight: "bold", fontSize: "1rem" }}>{selected?.title}</div>
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                     {selected?.tags.map((item) => {
@@ -43,14 +44,14 @@ function MapBoxDetail({ selected }: { selected: MapDataLocationProps | null }) {
                 </div>
 
                 <div style={{
-                    flexWrap: "wrap", wordWrap: "break-word", wordBreak: "break-all", textOverflow: " ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 3, overflow: "hidden", fontSize: "14px"
+                    flexWrap: "wrap", wordWrap: "break-word", wordBreak: "break-all", textOverflow: " ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", 
+                    WebkitLineClamp: 3, overflow: "hidden", fontSize: "14px"
 
                 }}>{selected?.desci}</div>
                 <div style={{ color: "#00000073" }}>({selected?.lat}, {selected?.lon})</div>
             </div>
             <VoteBox points={points} />
-
-
+            
         </div>
 
 
