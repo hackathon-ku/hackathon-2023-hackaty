@@ -10,6 +10,7 @@ import Filter from '../assets/images/admin_page/filter.svg';
 import '../pages/SosAdmin.css';
 import ReportDetailed from '../components/ReportDetailed';
 import MapDataBackend from '../data/data';
+import axios from 'axios';
 
 const SosAdmin = () => {
   const [location, setLocation] = useState<CoordinateProps | null>(null);

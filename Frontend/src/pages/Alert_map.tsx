@@ -4,9 +4,18 @@ import MapBoxDetail from '../components/MapBoxDetail/MapBoxDetail';
 import StudentLayout from '../modules/common/StudentLayout';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
 import Fullmap from '../components/FullMap';
+import axios from 'axios';
 
 function Alert_map() {
+  useEffect(() => {
+    // TODO Not find all
+    axios.get('https://hackaty.onrender.com/api/report/find_all').then((res: any) => {
+      console.log('This', res?.data?.message);
+      setMapData(res?.data?.message);
+    });
+  }, []);
   console.log(Map_data);
+  const [MapData, setMapData] = useState<MapDataLocationProps[]>([]);
   const [location, setLocation] = useState<CoordinateProps | null>(null);
   const [selected, setSelected] = useState<MapDataLocationProps | null>(null);
   useEffect(() => {
@@ -16,6 +25,8 @@ function Alert_map() {
         lng: position.coords.longitude,
       });
     });
+    // TODO Only Accepted
+    axios.get('https://hackaty.onrender.com/api/report').then((res) => {});
   }, []);
 
   return (
@@ -26,7 +37,7 @@ function Alert_map() {
             location={location}
             setLocation={setLocation}
             setSelected={setSelected}
-            mapData={Map_data}
+            mapData={MapData}
             isStatus={false}
             width={'100vw'}
             height={'70vh'}
