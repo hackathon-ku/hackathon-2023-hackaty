@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
-from db import Report
+from db import Report, Tag
 from datetime import datetime
 from utils import calculate_distance_linear, is_later_than
 import pytz
@@ -23,6 +23,10 @@ async def create_user_report(createbody: CreateUserReportBody):
                     "vote_score": 0, "report_status": "Inbox"})
     # if calculate_distance_linear(13.850679, 100.573696, report.lat, report.lon) < 4:
     #     raise HTTPException("Cant pin outside campus")
+    for tag in report.tags:
+        if not await Tag.find_one(Tag.name==tag.name):
+            new_tag = Tag(name=tag.name)
+            await new_tag.insert()
     await report.insert()
     return {
         "message": "created successfully",
@@ -95,7 +99,8 @@ async def get_alert(last_report_timestamp, lat, lon):
             continue
         if isinstance(last_reported, str):
             last_reported = datetime.fromisoformat(last_reported[:-6])
-        distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
+        if last_report_timestamp is not None:
+            distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
         if report.last_report_time > last_report_timestamp:
             lst.append({**report.model_dump(), "distance": distance})
             if report.last_report_time > last_reported:
