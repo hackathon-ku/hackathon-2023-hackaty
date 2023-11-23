@@ -18,8 +18,11 @@ git push -u origin main
 * นิสิตไม่รู้ต้องแจ้งเหตุด่วนเหตุร้ายที่ไหน 
 * นิสิตไม่ได้รับแจ้งเตือนเหตุฉุกเฉิน 
 * นิสิตไม่รู้จะร้องเรียนปัญหากับใคร 
-## Member
-- 
+## Members
+- Wanatprun Kradee
+- [Supawee Borvornsaktavorn](https://github.com/katisd)
+- [Thanadol Udomsirinanchai](https://github.com/ThanadolU)
+- [Preawpan Thamapipol](https://github.com/Tezigudo)
 ## SOS-Alert
 SOS Alert ให้บริการ 3 ฟีเจอร์ เพื่อตอบโจทย์ปัญหาของนิสิต
 ### 1. SOS Call(ซอส-คอล)
@@ -36,7 +39,6 @@ SOS Alert ให้บริการ 3 ฟีเจอร์ เพื่อต
 “ ไฟตรงคณะเราดับ อยากแก้ไขจัง ต้องร้องเรียนที่ใครเนี่ย” ฟีเจอร์ SOS Alert Map ที่จะสามารถร้องเรียนปัญหาที่พบเจอในมหาวิทยาลัยได้ แล้วปัญหานั้นจะขึ้นใน Map เพื่อให้เรารู้ตำแหน่ง รายละเอียด รูปภาพ และยังสามารถเห็นด้วยกับคำร้องของเพื่อนที่แจ้งปัญหานั้นไปแล้วด้วยได้
 
 
-
 ![SOS-Alert-Map](https://github.com/hackathon-ku/hackathon-2023-hackaty/assets/90249534/c04b42bb-9182-4cc3-a4ec-0cb90791a8a9)
 
 ## Design
@@ -44,3 +46,117 @@ SOS Alert ให้บริการ 3 ฟีเจอร์ เพื่อต
 * [Figma File(View)](https://www.figma.com/file/zPxiFBcFd4mtMNQI9ikhJo/Hackatie?type=design&node-id=414%3A2042&mode=design&t=jJY4LnwT1meve31f-1)
 * [Figma Prototype(Nisit)](https://www.figma.com/proto/zPxiFBcFd4mtMNQI9ikhJo/Hackatie?type=design&node-id=299-1128&t=CdgRycSST9TvjtWv-1&scaling=min-zoom&page-id=299%3A1127&starting-point-node-id=299%3A1128&mode=design)
 * [Figma Prototype(Admin)](https://www.figma.com/proto/zPxiFBcFd4mtMNQI9ikhJo/Hackatie?type=design&node-id=197-1024&t=uQrnKuhiDGom81GL-1&scaling=contain&page-id=0%3A1&starting-point-node-id=197%3A1024&mode=design)
+
+
+## Backend
+
+
+### Install and run
+
+### How to Install
+
+make sure that you have [python](https://www.python.org/downloads/) in your computer
+
+first, clone [**this repository**](https://github.com/hackathon-ku/hackathon-2023-hackaty/tree/dev) by type this command in your terminal at your choosen path
+
+```sh
+git clone https://github.com/hackathon-ku/hackathon-2023-hackaty.git Hackaty
+```
+
+go to project directory
+
+```sh
+cd Hackaty
+cd Backend
+```
+
+ you have to create file name `.env` to configuration
+
+
+`.env` file template looks like [sample.env](sample.env) you can modify value and copy it into `.env`
+
+you may use this to be a MONGO_URL
+
+```
+mongodb://root:1234@localhost:27018/mongo-hackaty?authSource=admin
+
+```
+
+run and initialize mongo(db)
+```sh
+docker compose up -d
+```
+
+install requirements
+```sh
+pip install -r requirements.txt
+```
+
+
+### How to run
+
+#### activate the virtual environment by typing this
+
+in mac/linux
+
+```sh
+>> source env/bin/activate
+```
+
+Windows
+```sh
+>> env\Scripts\activate
+```
+
+#### now to run server by type this
+
+```
+uvicorn main:app --reload
+```
+# Frontend
+## Technologies Used
+
+- React.js
+- Vite
+- TypeScript
+- Google Maps API
+# Installation and Setup
+
+## Clone the Repository
+```bash
+git clone https://github.com/hackathon-ku/hackathon-2023-hackaty.git
+cd hackathon-2023-hackaty
+```
+
+## Install Dependencies
+
+Using npm:
+
+`npm install`
+or
+`yarn install`
+
+## Configure Google Maps API
+
+To use the Google Maps API, you will need to obtain an API key. Once you have it, create a .env file in the root of the project and add your API key as
+```REACT_APP_GOOGLE_MAPS_API_KEY=your_api_key_here```
+After starting the project, open http://localhost:5173 in your browser to use the application.
+
+## Contributing
+
+Contributions to the SOS Alert project are highly appreciated. If you're interested in helping out:
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Contact
+
+For any questions, suggestions, or issues, please contact us at [setthanan@50domain.com]. You can also raise an issue in the GitHub repository.
+
+## Acknowledgements
+
+Thanks to all contributors and maintainers.
+Special thanks to Nisit KU for the collaboration and support.
+Note: Ensure all placeholders (like your API key, email address, etc.) are replaced with actual, relevant information for your project.
+

@@ -3,5 +3,3 @@ python-decouple
 motor
 beanie
 geopy
-googlemaps
-pytz
