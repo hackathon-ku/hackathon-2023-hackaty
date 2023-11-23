@@ -3,7 +3,7 @@ from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody,
 from db import Report
 from datetime import datetime
 from utils import calculate_distance_linear, is_later_than
-
+import pytz
 
 router = APIRouter(
     prefix="/api/report",
@@ -33,6 +33,12 @@ async def create_user_report(createbody: CreateUserReportBody):
 @router.get('/find_all')
 async def find_report():
     report = await Report.find().to_list()
+    return {"message": report}
+
+
+@router.get('/user/find_all')
+async def find_user_report():
+    report = await Report.find(Report.report_status == "Approve")
     return {"message": report}
 
 
@@ -67,11 +73,12 @@ async def update_vote_score(report_body: UpdateReportVoteBody):
     if body['vote_score']:
         report.vote_score += 1
     else:
-        report.vote_score -=1
+        report.vote_score -= 1
     await report.save()
     return {
         "message": f"report {body['report_id']} save successfully"
     }
+
 
 @router.get('/get_alert/{last_report_timestamp}/{lat}/{lon}')
 async def get_alert(last_report_timestamp, lat, lon):
@@ -82,10 +89,17 @@ async def get_alert(last_report_timestamp, lat, lon):
     for report in all_report:
         if report.last_report_time is None:
             continue
+
+            # Convert report.last_report_time to the appropriate datetime format if necessary
+        report_last_time = report.last_report_time
+        if isinstance(report_last_time, str):
+            report_last_time = datetime.fromisoformat(
+                report_last_time).replace(tzinfo=pytz.UTC)
         distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
-        if distance < 4 and is_later_than(report.last_report_time, last_report_timestamp):
-            print('yessss')
-            lst.append({**report, "distance": distance})
+        # if distance < 4
+        if is_later_than(report.last_report_time, last_report_timestamp):
+            report_dict = report if isinstance(report, dict) else report.model_dump()
+            lst.append({**report_dict, "distance": distance})
             if is_later_than(report.last_report_time, last_reported):
                 last_reported = report.last_report_time
     return {
