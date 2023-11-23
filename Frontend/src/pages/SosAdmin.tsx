@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Map_data from '../data/mapData';
 import Fullmap from '../components/FullMap';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
@@ -14,6 +15,18 @@ import MapDataBackend from '../data/data';
 const SosAdmin = () => {
   const [location, setLocation] = useState<CoordinateProps | null>(null);
   const [selected, setSelected] = useState<MapDataLocationProps | null>(null);
+  const [allReport, setAllReport] = useState([]);
+
+  const getReport =  () => {
+    axios.get(
+      'https://hackaty.onrender.com/api/report/find_all'
+    ).then(res => {
+      console.log(res.data.message);
+      setAllReport(res.data.message)
+      console.log(allReport)
+    })
+  }
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setLocation({
@@ -22,6 +35,13 @@ const SosAdmin = () => {
       });
     });
   }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      getReport()
+    }, 4000);
+  }, [])
+
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ width: '68vw' }}>
@@ -126,7 +146,7 @@ const SosAdmin = () => {
         </div>
         <div style={{ gap: '2vh', overflowY: 'scroll', height: '78vh', padding: '2vw' }}>
           {selected === null ? (
-            Map_data.map((data) => {
+            allReport.map((data) => {
               return <MapBoxDetailAdmin data={data} setSelected={setSelected} />;
             })
           ) : (

@@ -4,16 +4,16 @@ export interface CoordinateProps {
 }
 
 export interface MapDataLocationProps {
-  m_id: string;
+  _id: string;
   user: null;
-  desci: string;
+  description: string;
   title: string;
   tags: TagProps[];
   lat: number;
   lon: number;
   time_stamp: string;
-  Status: boolean;
-  Priority: string;
+  report_status: string;
+  priority: string;
   vote_score: number;
 }
 

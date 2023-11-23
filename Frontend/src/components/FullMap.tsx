@@ -29,7 +29,7 @@ function buildContent(data: MapDataLocationProps) {
   </div>
   <div class="details">
     <div class="price">${data.desci}</div>
-    <div class="address">${data.m_id}</div>
+    <div class="address">${data._id}</div>
     <div class="features">
       <div>
         <i aria-hidden="true" class="fa fa-bed fa-lg bed" title="bedroom"></i>
