@@ -72,7 +72,7 @@ async def update_report(report_body: UpdateReportBody):
 async def update_vote_score(report_body: UpdateReportVoteBody):
     body = report_body.model_dump()
     report = await Report.get(body['report_id'])
-    if body['vote_score']:
+    if body['isUp']:
         report.vote_score += 1
     else:
         report.vote_score -= 1
