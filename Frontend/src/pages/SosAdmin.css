@@ -1,0 +1,6 @@
+.sos-alert-center-title {
+    background: linear-gradient(101deg, #277875 14.17%, #50AC7D 67.03%, rgba(193, 194, 60, 0.87) 152.91%);
+}
+.ant-card-body{
+    display: flex;
+}

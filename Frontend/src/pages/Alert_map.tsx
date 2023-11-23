@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import MapBoxDetail from '../components/MapBoxDetail/MapBoxDetail';
 import StudentLayout from '../modules/common/StudentLayout';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
-import Fullmap from '../components/FullMap';
-import { FormOutlined, LeftOutlined, CaretUpOutlined, MinusOutlined } from '@ant-design/icons';
+import { FormOutlined, LeftOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { Button, Spin } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import './Alert_map.css';
 import axios from 'axios';
+import Fullmap from '../components/FullMap';
 
 
 function Alert_map() {
@@ -52,6 +52,7 @@ function Alert_map() {
           />
         </Link>
 
+
         <Button
           type="primary"
           size="large"
@@ -91,6 +92,7 @@ function Alert_map() {
               }}
             >
               <Spin size="large" />
+
             </div>
           )}
         </div>

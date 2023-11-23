@@ -52,7 +52,7 @@ function buildContent(data: MapDataLocationProps) {
 
     return content;
 }
-const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus, width, height }: {
+const Fullmap2 = ({ location, setLocation, setSelected, mapData, isStatus, width, height }: {
     location: CoordinateProps,
     setLocation: React.Dispatch<React.SetStateAction<CoordinateProps | null>>,
     setSelected: React.Dispatch<React.SetStateAction<MapDataLocationProps | null>>,
@@ -103,12 +103,12 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus, width,
             setMap(initializedMap); // update map state
         };
         loadMap();
-    }, [mapData]);
-    // return <div ref={mapRef} style={{ width: "100vw", height: "77vh", display: "flex", justifyContent: "center", margin: "0 auto" }} />;
-    return <div ref={mapRef} style={{ width: "100%", height: "77vh", display: "flex", justifyContent: "center", margin: "0 auto" }} />;
+    }, [location, setLocation]);
+
+    return <div ref={mapRef} style={{ width: width, height: height }} />;
 };
 
-export default Fullmap;
+export default Fullmap2;
 
 
 
