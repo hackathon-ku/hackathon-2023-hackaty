@@ -98,7 +98,6 @@ async def get_alert(last_report_timestamp, lat, lon):
         distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
         # if distance < 4
         if is_later_than(report.last_report_time, last_report_timestamp):
-            print('ggoglgll')
             report_dict = report if isinstance(report, dict) else report.model_dump()
             lst.append({**report_dict, "distance": distance})
             if is_later_than(report.last_report_time, last_reported):
