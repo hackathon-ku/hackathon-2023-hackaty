@@ -87,6 +87,33 @@ type WeatherProps = {
 function StudentMain() {
   const [location, setLocation] = useState<CoordinateProps>();
   const [weather, setWeather] = useState<WeatherProps>();
+  const [alerts, setAlerts] = useState<{ distance: number; title: string; last_report_time: string }[]>();
+  const alertss = {
+    last_report_timestamp: '2021-09-25T15:00:00.000Z',
+    reports: [
+      {
+        distance: 0.1,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.2,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.3,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.4,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.5,
+        title: 'เกษตรศาสตร์คุง',
+      },
+    ],
+  };
+  /* -------------------------- get current location -------------------------- */
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setLocation({
@@ -95,6 +122,7 @@ function StudentMain() {
       });
     });
   }, []);
+  /* ------------------------------- get weather ------------------------------ */
   useEffect(() => {
     if (!location) return;
     axios
@@ -111,20 +139,40 @@ function StudentMain() {
       });
   }, [!location]);
   const navigate = useNavigate();
-  // fetch alert notification
+  /* ------------------------ fetch alert notification ------------------------ */
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const last_report_timestamp = localStorage.getItem('last_report_timestamp');
-      axios
-        .get(`https://hackaty.onrender.com/api/report/get_alert/${last_report_timestamp}/${'lat'}/${'lon'}`)
-        .then((res: any) => {
-          console.log('This', res?.data?.message);
-        });
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const last_report_timestamp = localStorage.getItem('last_report_timestamp');
+        console.log('last_report_timestamp', last_report_timestamp);
+        console.log('position.coords.latitude', position.coords.latitude, position.coords.longitude);
+        axios
+          .get(
+            // `https://hackaty.onrender.com/api/report/get_alert/${last_report_timestamp}/${position.coords.latitude}/${position.coords.longitude}`,
+            `https://hackaty.onrender.com/api/report/get_alert/${0}/${position.coords.latitude}/${
+              position.coords.longitude
+            }`,
+          )
+          .then((res: any) => {
+            console.log('This is alert', res?.data);
+            console.log(
+              'This is last_report_timestamp',
+              res?.data?.last_report_timestamp,
+              last_report_timestamp,
+              location?.lat,
+              location?.lng,
+            );
+            setAlerts(res?.data.report);
+            console.log(res?.data?.last_report_timestamp);
+            localStorage.setItem('last_report_timestamp', res?.data?.last_report_timestamp);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
     }, 5000);
     return () => clearInterval(intervalId);
   }, []);
-
-  useEffect;
   return (
     <>
       <StudentLayout>
@@ -199,8 +247,21 @@ function StudentMain() {
               </div>
             ))}
           </div>
+
           {/* TODO Add Alert */}
-          <Alert message="Warning" type="warning" closable />
+          {alerts?.map((alert) => {
+            console.log(alert.last_report_time);
+            if (alert.distance > 4) {
+              return '';
+            }
+            console.log(new Date(alert.last_report_time));
+            console.log(new Date(localStorage.getItem('last_report_timestamp') as string));
+            if (new Date(alert.last_report_time) >= new Date(localStorage.getItem('last_report_timestamp') as string)) {
+              return '';
+            } else {
+              return <Alert message={`⚠️ ${alert.distance} km. ${alert.title}`} type="warning" closable />;
+            }
+          })}
           {/* ---------------------------------- News ---------------------------------- */}
           <div>
             <div style={{ display: 'flex', width: 'auto', justifyContent: 'space-between' }}>
