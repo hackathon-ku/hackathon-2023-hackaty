@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import ReportRouter
+from routers import ReportRouter, TagRouter
 from db import Tag, Report
 from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
@@ -20,6 +20,7 @@ app.add_middleware(
 )
 
 app.include_router(ReportRouter.router)
+app.include_router(TagRouter.router)
 
  
 @app.on_event('startup')
