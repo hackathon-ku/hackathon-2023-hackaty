@@ -62,6 +62,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
 }) => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<google.maps.Map | null>(null);
+
     useEffect(() => {
         const loadMap = async () => {
             if (!mapRef.current) return;
