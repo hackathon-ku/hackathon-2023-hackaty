@@ -16,8 +16,8 @@ def calculate_distance_road(lat1, lon1, lat2, lon2):
 
 def is_later_than(dt_str1, dt_str2):
     # Parse the strings into datetime objects
-    dt1 = datetime.fromisoformat(dt_str1)
-    dt2 = datetime.fromisoformat(dt_str2)
+    dt1 = datetime.fromisoformat(str(dt_str1))
+    dt2 = datetime.fromisoformat(str(dt_str2))
 
     return dt1 > dt2
 

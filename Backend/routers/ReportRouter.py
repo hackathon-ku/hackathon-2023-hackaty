@@ -80,11 +80,14 @@ async def get_alert(last_report_timestamp, lat, lon):
     all_report = await Report.find().to_list()
 
     for report in all_report:
+        if report.last_report_time is None:
+            continue
         distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
-        if is_later_than(report.last_report, last_report_timestamp) and report.last_report <  distance < 4:
+        if distance < 4 and is_later_than(report.last_report_time, last_report_timestamp):
+            print('yessss')
             lst.append({**report, "distance": distance})
-            if report.last_report  > last_reported:
-                last_reported = report.last_report
+            if is_later_than(report.last_report_time, last_reported):
+                last_reported = report.last_report_time
     return {
         "message": "success",
         "report": lst,
