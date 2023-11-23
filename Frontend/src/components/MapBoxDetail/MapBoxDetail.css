@@ -9,8 +9,9 @@
   border-radius: 1.5rem 1.5rem 0 0;
 
   background-color: #ffffff;
-
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+
+  position: relative;
+  z-index: 2;
 }
 /* { width: "100vw", height: "70vh" } */
