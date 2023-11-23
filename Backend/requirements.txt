@@ -2,3 +2,5 @@ fastapi[all]
 python-decouple
 motor
 beanie
+geopy
+googlemaps
