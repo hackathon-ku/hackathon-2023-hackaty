@@ -19,7 +19,6 @@ const router = createBrowserRouter([
     element: <SosCall />,
   },
   {
-
     path: "/user-report",
     element: <UserReportPage />
   },
