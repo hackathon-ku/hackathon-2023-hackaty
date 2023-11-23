@@ -67,7 +67,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
         const loadMap = async () => {
             if (!mapRef.current) return;
             const initializedMap = new Map(mapRef.current, {
-                zoom: 20,
+                zoom: 18,
                 center: location,
                 mapId: 'DEMO_MAP_ID',
             });
