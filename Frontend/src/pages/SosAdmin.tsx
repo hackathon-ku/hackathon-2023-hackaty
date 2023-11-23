@@ -4,7 +4,7 @@ import Map_data from '../data/mapData';
 import Fullmap from '../components/FullMap';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
 import { Button, Card, Typography, Statistic, Row, Col, Divider } from 'antd';
-import { MapBoxDetailAdmin } from '../components/MapBoxDetail/MapBoxDetail';
+import { MapBoxDetailAdmin } from '../components/MapBoxDetail/MapBoxDetail2';
 import { PencilSimple } from '@phosphor-icons/react';
 import Write from '../assets/images/admin_page/write.svg';
 import Filter from '../assets/images/admin_page/filter.svg';
