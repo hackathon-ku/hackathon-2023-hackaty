@@ -75,10 +75,11 @@ function Alert_map() {
                 {/* <Button type="text" block style={{ position: "absolute", zIndex: "4", top: "70%" , width:"20%"}}>
                     <CaretUpOutlined  />
                 </Button> */}
-                <Button shape="circle" id='btn_up'
-                    style={{ position: "absolute", zIndex: "4", left: "50%", color: "#7F7F7F", transition: "transform 0.5s ease-in" }}
-                    icon={<MinusOutlined />}
+                <Button id='btn_up'
+                    style={{ position: "absolute", zIndex: "4", color: "#7F7F7F", transition: "transform 0.5s ease-in", width: "100%", maxHeight: "1rem" }}
+                    // icon={<MinusOutlined />}
                     type='text'
+                    icon={<CaretUpOutlined />}
                     onClick={() => {
                         console.log(document.getElementById("container_map_img")?.classList.contains("move-up"))
                         if (document.getElementById("container_map_img")?.classList.contains("move-up")) {
@@ -96,7 +97,7 @@ function Alert_map() {
 
                         }
                     }}
-                />
+                ></Button>
                 <div id="container_map_img"  >
                     <img
                         style={{
