@@ -88,6 +88,7 @@ function StudentMain() {
   const [location, setLocation] = useState<CoordinateProps>();
   const [weather, setWeather] = useState<WeatherProps>();
   const [alerts, setAlerts] = useState<{ distance: number; title: string; last_report_time: string }[]>();
+  const [lastTime, setLastTime] = useState('');
   /* -------------------------- get current location -------------------------- */
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -119,6 +120,7 @@ function StudentMain() {
     const intervalId = setInterval(() => {
       navigator.geolocation.getCurrentPosition(function (position) {
         const last_report_timestamp = localStorage.getItem('last_report_timestamp');
+        setLastTime(last_report_timestamp as string);
         console.log('last_report_timestamp', last_report_timestamp);
         console.log('position.coords.latitude', position.coords.latitude, position.coords.longitude);
         axios
@@ -230,7 +232,7 @@ function StudentMain() {
             }
             console.log(new Date(alert.last_report_time));
             console.log(new Date(localStorage.getItem('last_report_timestamp') as string));
-            if (new Date(alert.last_report_time) >= new Date(localStorage.getItem('last_report_timestamp') as string)) {
+            if (new Date(alert.last_report_time) <= new Date(lastTime)) {
               return '';
             } else {
               return <Alert message={`⚠️ ${alert.distance.toFixed(2)} km. | ${alert.title}`} type="warning" closable />;
