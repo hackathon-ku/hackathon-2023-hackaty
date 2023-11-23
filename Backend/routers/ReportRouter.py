@@ -85,16 +85,20 @@ async def update_vote_score(report_body: UpdateReportVoteBody):
 @router.get('/get_alert/{last_report_timestamp}/{lat}/{lon}')
 async def get_alert(last_report_timestamp, lat, lon):
     lst = []
+    if isinstance(last_report_timestamp, str):
+        last_report_timestamp = datetime.fromisoformat(last_report_timestamp[:-6])
     last_reported = last_report_timestamp
     all_report = await Report.find().to_list()
 
     for report in all_report:
         if report.last_report_time is None:
             continue
+        if isinstance(last_reported, str):
+            last_reported = datetime.fromisoformat(last_reported[:-6])
         distance = calculate_distance_linear(lat, lon, report.lat, report.lon)
-        if is_later_than(report.last_report_time, last_report_timestamp):
+        if report.last_report_time > last_report_timestamp:
             lst.append({**report.model_dump(), "distance": distance})
-            if is_later_than(report.last_report_time, last_reported):
+            if report.last_report_time > last_reported:
                 last_reported = report.last_report_time
     return {
         "message": "success",
