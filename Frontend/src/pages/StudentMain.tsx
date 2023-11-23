@@ -8,7 +8,7 @@ import {
   Link,
   Megaphone,
 } from '@phosphor-icons/react';
-import { Button, Card, Typography } from 'antd';
+import { Alert, Button, Card, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import StudentLayout from '../modules/common/StudentLayout';
 import StudentNav from '../modules/common/StudentNav';
@@ -87,6 +87,9 @@ type WeatherProps = {
 function StudentMain() {
   const [location, setLocation] = useState<CoordinateProps>();
   const [weather, setWeather] = useState<WeatherProps>();
+  const [alerts, setAlerts] = useState<{ distance: number; title: string; last_report_time: string }[]>();
+  const [lastTime, setLastTime] = useState('');
+  /* -------------------------- get current location -------------------------- */
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setLocation({
@@ -111,6 +114,41 @@ function StudentMain() {
       });
   }, [!location]);
   const navigate = useNavigate();
+  /* ------------------------ fetch alert notification ------------------------ */
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const last_report_timestamp = localStorage.getItem('last_report_timestamp');
+        setLastTime(last_report_timestamp as string);
+        console.log('last_report_timestamp', last_report_timestamp);
+        console.log('position.coords.latitude', position.coords.latitude, position.coords.longitude);
+        axios
+          .get(
+            // `https://hackaty.onrender.com/api/report/get_alert/${last_report_timestamp}/${position.coords.latitude}/${position.coords.longitude}`,
+            `https://hackaty.onrender.com/api/report/get_alert/${0}/${position.coords.latitude}/${
+              position.coords.longitude
+            }`,
+          )
+          .then((res: any) => {
+            console.log('This is alert', res?.data);
+            console.log(
+              'This is last_report_timestamp',
+              res?.data?.last_report_timestamp,
+              last_report_timestamp,
+              location?.lat,
+              location?.lng,
+            );
+            setAlerts(res?.data.report);
+            console.log(res?.data?.last_report_timestamp);
+            localStorage.setItem('last_report_timestamp', res?.data?.last_report_timestamp);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <>
       <StudentLayout>
@@ -185,7 +223,20 @@ function StudentMain() {
               </div>
             ))}
           </div>
-          {/* TODO Add Alert */}
+
+          {alerts?.map((alert) => {
+            console.log(alert.last_report_time);
+            if (alert.distance > 4) {
+              return '';
+            }
+            console.log(new Date(alert.last_report_time));
+            console.log(new Date(localStorage.getItem('last_report_timestamp') as string));
+            if (new Date(alert.last_report_time) <= new Date(lastTime)) {
+              return '';
+            } else {
+              return <Alert message={`⚠️ ${alert.distance.toFixed(2)} km. | ${alert.title}`} type="warning" closable />;
+            }
+          })}
           {/* ---------------------------------- News ---------------------------------- */}
           <div>
             <div style={{ display: 'flex', width: 'auto', justifyContent: 'space-between' }}>

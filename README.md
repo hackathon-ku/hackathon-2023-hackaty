@@ -38,13 +38,15 @@ SOS Alert ให้บริการ 3 ฟีเจอร์ เพื่อต
 ### 3. SOS Alert Map
 “ ไฟตรงคณะเราดับ อยากแก้ไขจัง ต้องร้องเรียนที่ใครเนี่ย” ฟีเจอร์ SOS Alert Map ที่จะสามารถร้องเรียนปัญหาที่พบเจอในมหาวิทยาลัยได้ แล้วปัญหานั้นจะขึ้นใน Map เพื่อให้เรารู้ตำแหน่ง รายละเอียด รูปภาพ และยังสามารถเห็นด้วยกับคำร้องของเพื่อนที่แจ้งปัญหานั้นไปแล้วด้วยได้
 
+
 ![SOS-Alert-Map](https://github.com/hackathon-ku/hackathon-2023-hackaty/assets/90249534/c04b42bb-9182-4cc3-a4ec-0cb90791a8a9)
 
-# Design
+## Design
 
 * [Figma File(View)](https://www.figma.com/file/zPxiFBcFd4mtMNQI9ikhJo/Hackatie?type=design&node-id=414%3A2042&mode=design&t=jJY4LnwT1meve31f-1)
 * [Figma Prototype(Nisit)](https://www.figma.com/proto/zPxiFBcFd4mtMNQI9ikhJo/Hackatie?type=design&node-id=299-1128&t=CdgRycSST9TvjtWv-1&scaling=min-zoom&page-id=299%3A1127&starting-point-node-id=299%3A1128&mode=design)
 * [Figma Prototype(Admin)](https://www.figma.com/proto/zPxiFBcFd4mtMNQI9ikhJo/Hackatie?type=design&node-id=197-1024&t=uQrnKuhiDGom81GL-1&scaling=contain&page-id=0%3A1&starting-point-node-id=197%3A1024&mode=design)
+
 
 ## Backend
 

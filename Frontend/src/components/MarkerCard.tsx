@@ -15,12 +15,12 @@ const MarkerCard = ({ data }: { data: MapDataLocationProps }) => {
                     <div>
                         <i aria-hidden="true" className="fa fa-bed fa-lg bed" title="bedroom"></i>
                         <span className="fa-sr-only">Status</span>
-                        <span>${data.Status}</span>
+                        <span>${data.report_status}</span>
                     </div>
                     <div>
                         <i aria-hidden="true" className="fa fa-bath fa-lg bath" title="bathroom"></i>
                         <span className="fa-sr-only">Priority</span>
-                        <span>${data.Priority}</span>
+                        <span>${data.priority}</span>
                     </div>
                     <div>
                         <i aria-hidden="true" className="fa fa-ruler fa-lg size" title="size"></i>
