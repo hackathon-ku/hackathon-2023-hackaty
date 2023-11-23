@@ -88,31 +88,6 @@ function StudentMain() {
   const [location, setLocation] = useState<CoordinateProps>();
   const [weather, setWeather] = useState<WeatherProps>();
   const [alerts, setAlerts] = useState<{ distance: number; title: string; last_report_time: string }[]>();
-  const alertss = {
-    last_report_timestamp: '2021-09-25T15:00:00.000Z',
-    reports: [
-      {
-        distance: 0.1,
-        title: 'เกษตรศาสตร์คุง',
-      },
-      {
-        distance: 0.2,
-        title: 'เกษตรศาสตร์คุง',
-      },
-      {
-        distance: 0.3,
-        title: 'เกษตรศาสตร์คุง',
-      },
-      {
-        distance: 0.4,
-        title: 'เกษตรศาสตร์คุง',
-      },
-      {
-        distance: 0.5,
-        title: 'เกษตรศาสตร์คุง',
-      },
-    ],
-  };
   /* -------------------------- get current location -------------------------- */
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -248,7 +223,6 @@ function StudentMain() {
             ))}
           </div>
 
-          {/* TODO Add Alert */}
           {alerts?.map((alert) => {
             console.log(alert.last_report_time);
             if (alert.distance > 4) {
@@ -259,7 +233,7 @@ function StudentMain() {
             if (new Date(alert.last_report_time) >= new Date(localStorage.getItem('last_report_timestamp') as string)) {
               return '';
             } else {
-              return <Alert message={`⚠️ ${alert.distance} km. ${alert.title}`} type="warning" closable />;
+              return <Alert message={`⚠️ ${alert.distance.toFixed(2)} km. | ${alert.title}`} type="warning" closable />;
             }
           })}
           {/* ---------------------------------- News ---------------------------------- */}
