@@ -2,8 +2,7 @@ from fastapi import APIRouter, HTTPException
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
 from db import Report, Tag
 from datetime import datetime
-from utils import calculate_distance_linear, is_later_than
-import pytz
+from utils import calculate_distance_linear
 from typing import Optional
 
 router = APIRouter(
