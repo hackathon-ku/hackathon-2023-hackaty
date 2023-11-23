@@ -57,6 +57,8 @@ async def create_admin_report(createbody: CreateAdminReportBody):
 async def update_report(report_body: UpdateReportBody):
     body = report_body.model_dump()
     old_report = await Report.get(body['report_id'])
+    if not old_report:
+        return HTTPException(f"Report id: {body['report_id']}  not found")
     old_report.priority = body['priority']
     old_report.report_status = body['report_status']
     old_report.last_report = datetime.now()
