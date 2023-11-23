@@ -8,10 +8,13 @@ import {
   Link,
   Megaphone,
 } from '@phosphor-icons/react';
-import { Button, Card, Typography } from 'antd';
+import { Alert, Button, Card, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import StudentLayout from '../modules/common/StudentLayout';
 import StudentNav from '../modules/common/StudentNav';
+import { useEffect, useState } from 'react';
+import { CoordinateProps } from '../interface/interface';
+import axios, { Axios } from 'axios';
 // TODO Add path
 const menuNavigations = [
   {
@@ -74,8 +77,102 @@ const favLink = [
     icon: ChalkboardTeacher,
   },
 ];
+type WeatherProps = {
+  condition: {
+    text: string;
+    icon: string;
+  };
+  temp_c: number;
+};
 function StudentMain() {
+  const [location, setLocation] = useState<CoordinateProps>();
+  const [weather, setWeather] = useState<WeatherProps>();
+  const [alerts, setAlerts] = useState<{ distance: number; title: string; last_report_time: string }[]>();
+  const alertss = {
+    last_report_timestamp: '2021-09-25T15:00:00.000Z',
+    reports: [
+      {
+        distance: 0.1,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.2,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.3,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.4,
+        title: 'เกษตรศาสตร์คุง',
+      },
+      {
+        distance: 0.5,
+        title: 'เกษตรศาสตร์คุง',
+      },
+    ],
+  };
+  /* -------------------------- get current location -------------------------- */
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
+  /* ------------------------------- get weather ------------------------------ */
+  useEffect(() => {
+    if (!location) return;
+    axios
+      .get('https://weatherapi-com.p.rapidapi.com/current.json', {
+        params: { q: `${location.lat},${location.lng}` },
+        headers: {
+          'X-RapidAPI-Key': 'bfc9f0dfdfmsh4f98a101927de69p131a44jsn8e404a9bcead',
+          'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
+        },
+      })
+      .then((res) => {
+        setWeather(res.data.current);
+        console.log(res.data);
+      });
+  }, [!location]);
   const navigate = useNavigate();
+  /* ------------------------ fetch alert notification ------------------------ */
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const last_report_timestamp = localStorage.getItem('last_report_timestamp');
+        console.log('last_report_timestamp', last_report_timestamp);
+        console.log('position.coords.latitude', position.coords.latitude, position.coords.longitude);
+        axios
+          .get(
+            // `https://hackaty.onrender.com/api/report/get_alert/${last_report_timestamp}/${position.coords.latitude}/${position.coords.longitude}`,
+            `https://hackaty.onrender.com/api/report/get_alert/${0}/${position.coords.latitude}/${
+              position.coords.longitude
+            }`,
+          )
+          .then((res: any) => {
+            console.log('This is alert', res?.data);
+            console.log(
+              'This is last_report_timestamp',
+              res?.data?.last_report_timestamp,
+              last_report_timestamp,
+              location?.lat,
+              location?.lng,
+            );
+            setAlerts(res?.data.report);
+            console.log(res?.data?.last_report_timestamp);
+            localStorage.setItem('last_report_timestamp', res?.data?.last_report_timestamp);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <>
       <StudentLayout>
@@ -91,9 +188,15 @@ function StudentMain() {
           }}
         >
           <div>
-            <Typography.Text style={{ color: 'white' }}>Good Morning</Typography.Text>
+            <div style={{ display: 'flex' }}>
+              <Typography.Text style={{ color: 'white' }}>Good Morning</Typography.Text>
+              <img src={weather?.condition.icon} alt="" width={24} height={24} />
+              <Typography.Text style={{ color: 'white' }}>
+                {weather?.condition?.text} {weather?.temp_c} C
+              </Typography.Text>
+            </div>
             <Typography.Title style={{ color: 'white' }} level={5}>
-              Mr.Kasetsart Student
+              Mr.Kasetsart Student เกษตรศาสตร์คุง
             </Typography.Title>
           </div>
           <Button type="text" icon={<Bell size={22} color="white" />} />
@@ -107,6 +210,7 @@ function StudentMain() {
             flexDirection: 'column',
             gap: '28px',
             alignContent: 'center',
+            paddingBottom: '15vh',
           }}
         >
           {/* ------------------------------- Menu Items ------------------------------- */}
@@ -143,7 +247,21 @@ function StudentMain() {
               </div>
             ))}
           </div>
+
           {/* TODO Add Alert */}
+          {alerts?.map((alert) => {
+            console.log(alert.last_report_time);
+            if (alert.distance > 4) {
+              return '';
+            }
+            console.log(new Date(alert.last_report_time));
+            console.log(new Date(localStorage.getItem('last_report_timestamp') as string));
+            if (new Date(alert.last_report_time) >= new Date(localStorage.getItem('last_report_timestamp') as string)) {
+              return '';
+            } else {
+              return <Alert message={`⚠️ ${alert.distance} km. ${alert.title}`} type="warning" closable />;
+            }
+          })}
           {/* ---------------------------------- News ---------------------------------- */}
           <div>
             <div style={{ display: 'flex', width: 'auto', justifyContent: 'space-between' }}>
@@ -156,9 +274,10 @@ function StudentMain() {
               <ArrowCircleRight size={22} color="#277875" />
             </div>
             <div style={{ display: 'flex', gap: '23px', overflowX: 'scroll' }}>
-              {newsData.map((news) => (
+              {newsData.map((news, Index) => (
                 <Card
                   style={{ width: '263px' }}
+                  key={Index + news.title}
                   cover={<img src={news.image} style={{ width: '263px', height: '164px', objectFit: 'cover' }} />}
                 >
                   <Typography.Title level={5}>{news.title}</Typography.Title>
@@ -182,6 +301,7 @@ function StudentMain() {
             <div style={{ display: 'flex', gap: '23px' }}>
               {favLink.map((data) => (
                 <div
+                  key={data.name}
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -191,7 +311,6 @@ function StudentMain() {
                     alignItems: 'center',
                     cursor: 'pointer',
                   }}
-                  // onClick={() => navigate(item.path)}
                 >
                   <Button type="primary" shape="circle" size="large" icon={<data.icon size={22} color="white" />} />
                   <Typography.Text style={{ color: '#277875', fontSize: '12px' }}>{data.name}</Typography.Text>
