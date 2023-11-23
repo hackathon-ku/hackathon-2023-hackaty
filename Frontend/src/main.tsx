@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     path: '/sos-admin',
     element: <SosAdmin />,
   },
-  
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
