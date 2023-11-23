@@ -19,22 +19,17 @@ const router = createBrowserRouter([
     element: <SosCall />,
   },
   {
-    path: "/user-report",
-    element: <UserReportPage />
-  },
-  {
     path: '/alert-map',
     element: <Alert_map />,
   },
   {
     path: '/sos-alert-form',
-    element: <AlertMapForm />,
+    element: <UserReportPage />,
   },
   {
     path: '/sos-admin',
     element: <SosAdmin />,
   },
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
