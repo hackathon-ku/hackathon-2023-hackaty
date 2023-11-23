@@ -23,16 +23,12 @@ const router = createBrowserRouter([
     element: <SosCall />,
   },
   {
-    path: "/user-report",
-    element: <UserReportPage />
-  },
-  {
     path: '/alert-map',
     element: <Alert_map />,
   },
   {
     path: '/sos-alert-form',
-    element: <AlertMapForm />,
+    element: <UserReportPage />,
   },
   {
     path: '/sos-admin',
@@ -43,10 +39,7 @@ const router = createBrowserRouter([
     path: '/test',
     element: <MapModal />,
   },
-  {
-    // path: '/test2',
-    // element: <CoordinateMap />,
-  }
+
 
 ]);
 
