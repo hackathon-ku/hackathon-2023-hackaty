@@ -167,7 +167,7 @@ export function MapBoxDetailAdmin({
                 }}
             >
                 <img
-                    src={data?.photo_url}
+                    src={data?.photo_url || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS96cmVJnAqOtv-ps5qnH-62RLVBh_ULqMD4PmBh1J6n7FTxlc7o4ZowyZT3C5v8Np_DKU&usqp=CAU"}
                     alt=""
                     style={{ height: '80px', width: '80px' }}
                 />

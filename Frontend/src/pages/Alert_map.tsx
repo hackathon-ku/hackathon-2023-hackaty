@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import MapBoxDetail from '../components/MapBoxDetail/MapBoxDetail';
 import StudentLayout from '../modules/common/StudentLayout';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
-import { FormOutlined, LeftOutlined, CaretUpOutlined, MinusOutlined } from '@ant-design/icons';
+import { FormOutlined, LeftOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { Button, Spin } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import './Alert_map.css';
@@ -80,7 +80,7 @@ function Alert_map() {
                             setLocation={setLocation}
                             setSelected={setSelected}
                             mapData={MapData}
-                            isStatus={true}
+                            isStatus={false}
                         />
                     ) : (
                         <div style={{ display: 'flex', justifyContent: 'center', height: "77vh", alignItems: "center", backgroundColor: "#dedede", borderRadius: "1rem" }}>

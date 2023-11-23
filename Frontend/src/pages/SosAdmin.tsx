@@ -16,6 +16,7 @@ const SosAdmin = () => {
   const [location, setLocation] = useState<CoordinateProps | null>(null);
   const [selected, setSelected] = useState<MapDataLocationProps | null>(null);
   const [allReport, setAllReport] = useState([]);
+  const [MapData, setMapData] = useState<MapDataLocationProps[]>([]);
 
   const getReport =  () => {
     axios.get(
@@ -26,7 +27,20 @@ const SosAdmin = () => {
       console.log(allReport)
     })
   }
+  useEffect(() => {
+    if (!selected) {
+        setSelected(MapData[0]);
+    } else {
+        setSelected(MapData.find((item) => item?._id === selected?._id));
+    }
+}, [MapData]);
 
+  useEffect(() => {
+    axios.get('https://hackaty.onrender.com/api/report/user/find_all').then((res: any) => {
+      console.log('Thissssss', res?.data?.message);
+      setMapData(res?.data?.message);
+    });
+  }, []);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setLocation({
@@ -101,8 +115,8 @@ const SosAdmin = () => {
               location={location}
               setLocation={setLocation}
               setSelected={setSelected}
-              mapData={Map_data}
-              isStatus={true}
+              mapData={MapData}
+              isStatus={false}
               width={'68vw'}
               height={'75.3vh'}
             />
