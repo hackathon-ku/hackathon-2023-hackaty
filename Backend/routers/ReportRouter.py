@@ -21,8 +21,8 @@ def landing():
 async def create_user_report(createbody: CreateUserReportBody):
     report = Report(**{**createbody.model_dump(), "timestamp": datetime.now(),
                     "vote_score": 0, "report_status": "Inbox"})
-    if calculate_distance_linear(13.850679, 100.573696, report.lat, report.lon) < 4:
-        raise HTTPException("Cant pin outside campus")
+    # if calculate_distance_linear(13.850679, 100.573696, report.lat, report.lon) < 4:
+    #     raise HTTPException("Cant pin outside campus")
     await report.insert()
     return {
         "message": "created successfully",
