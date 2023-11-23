@@ -17,7 +17,7 @@ def landing():
 
 @router.get('/all')
 async def get_tags():
-    tag = await Tag.find()
+    tag = await Tag.find().to_list()
     return {
         "all_tag": tag
     }
