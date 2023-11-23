@@ -22,7 +22,16 @@ function AcceptedBox({ data }: { data: MapDataLocationProps }) {
         <div style={{fontWeight: 'bold'}}>{data.vote_score}</div>
         <div style={{color: 'rgba(0, 0, 0, 0.45)'}}>supports</div>
       </div>
-      <Button shape='circle' icon={<ArchiveBox></ArchiveBox>}></Button>
+      {
+        data?.report_status === 'Approved' ? 
+        (
+          <Button shape='circle' icon={<ArchiveBox></ArchiveBox>}></Button>
+        )
+        :
+        (
+          <></>
+        )
+      }
     </div>
   )
 }

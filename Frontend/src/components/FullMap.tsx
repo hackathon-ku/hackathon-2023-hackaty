@@ -28,18 +28,18 @@ function buildContent(data: MapDataLocationProps) {
     
   </div>
   <div class="details">
-    <div class="price">${data.desci}</div>
+    <div class="price">${data.description}</div>
     <div class="address">${data._id}</div>
     <div class="features">
       <div>
         <i aria-hidden="true" class="fa fa-bed fa-lg bed" title="bedroom"></i>
         <span class="fa-sr-only">Status</span>
-        <span>${data.Status}</span>
+        <span>${data.report_status}</span>
       </div>
       <div>
         <i aria-hidden="true" class="fa fa-bath fa-lg bath" title="bathroom"></i>
         <span class="fa-sr-only">Priority</span>
-        <span>${data.Priority}</span>
+        <span>${data.priority}</span>
       </div>
       <div>
         <i aria-hidden="true" class="fa fa-ruler fa-lg size" title="size"></i>
@@ -85,7 +85,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus, width,
                 const marker = new AdvancedMarkerElement({
                     map: initializedMap,
                     position: { lat: data.lat, lng: data.lon },
-                    title: data.desci,
+                    title: data.description,
                     content: buildContent(data),
                 });
 

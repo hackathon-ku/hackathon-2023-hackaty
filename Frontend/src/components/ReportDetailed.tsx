@@ -107,7 +107,7 @@ const ReportDetailed = ({
           setData(null);
         }}
       >
-        Back{data?.Priority}
+        Back
       </Button>
       <div>
         <Paragraph style={{ marginTop: '20px', display: 'flex' }}>

@@ -15,6 +15,7 @@ export interface MapDataLocationProps {
   report_status: string;
   priority: string;
   vote_score: number;
+  photo_url: string;
 }
 
 export interface TagProps {
