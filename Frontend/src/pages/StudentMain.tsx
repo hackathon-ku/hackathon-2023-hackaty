@@ -58,7 +58,7 @@ const newsData = [
 ];
 const favLink = [
   {
-    name: 'Course Review',
+    name: 'Course',
     icon: Backpack,
   },
   {
@@ -70,7 +70,7 @@ const favLink = [
     icon: Books,
   },
   {
-    name: 'Class Schedule',
+    name: 'Classes',
     icon: ChalkboardTeacher,
   },
 ];
@@ -93,7 +93,7 @@ function StudentMain() {
           <div>
             <Typography.Text style={{ color: 'white' }}>Good Morning</Typography.Text>
             <Typography.Title style={{ color: 'white' }} level={5}>
-              JohnnyJohnny JohnnyJohnny
+              Mr.Kasetsart Student
             </Typography.Title>
           </div>
           <Button type="text" icon={<Bell size={22} color="white" />} />
@@ -101,7 +101,7 @@ function StudentMain() {
         {/* -------------------------------- Contents -------------------------------- */}
         <div
           style={{
-            width: '345px',
+            width: '80%',
             marginInline: 'auto',
             display: 'flex',
             flexDirection: 'column',
@@ -115,14 +115,16 @@ function StudentMain() {
               paddingBlock: '12px',
               paddingInline: '10px',
               display: 'flex',
-              marginTop: '-43px',
+              marginTop: '-5vh',
               background: 'white',
               borderRadius: '20px',
-              marginInline: 'auto',
+              alignContent: 'space-around',
+              boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.15)',
             }}
           >
             {menuNavigations.map((item) => (
               <div
+                key={item.name}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -135,7 +137,9 @@ function StudentMain() {
                 onClick={() => navigate(item.path)}
               >
                 <img width={34} height={34} src={item.icon} alt="" />
-                <Typography.Text style={{ color: '#277875', fontSize: '12px' }}>{item.name}</Typography.Text>
+                <Typography.Text ellipsis style={{ color: '#277875', fontSize: '12px' }}>
+                  {item.name}
+                </Typography.Text>
               </div>
             ))}
           </div>

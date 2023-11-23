@@ -7,11 +7,9 @@ import StudentMain from './pages/StudentMain';
 import Alert_map from './pages/Alert_map';
 import SosCall from './pages/SosCall';
 import UserReportPage from './pages/UserReportPage';
+import SosAdmin from './pages/SosAdmin';
+import AlertMapForm from './pages/AlertMapForm';
 const router = createBrowserRouter([
-  {
-    path: '/alert-map',
-    element: <Alert_map />,
-  },
   {
     path: '/',
     element: <StudentMain />,
@@ -23,7 +21,19 @@ const router = createBrowserRouter([
   {
     path: "/user-report",
     element: <UserReportPage />
-  }
+  },
+  {
+    path: '/alert-map',
+    element: <Alert_map />,
+  },
+  {
+    path: '/sos-alert-form',
+    element: <AlertMapForm />,
+  },
+  {
+    path: '/sos-admin',
+    element: <SosAdmin />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -33,6 +43,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         token: {
           colorPrimary: '#277875',
           colorInfo: '#277875',
+          fontFamily: 'Roboto,Prompt, sans-serif',
         },
       }}
     >
