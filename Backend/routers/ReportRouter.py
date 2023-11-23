@@ -61,7 +61,7 @@ async def update_report(report_body: UpdateReportBody):
         return HTTPException(f"Report id: {body['report_id']}  not found")
     old_report.priority = body['priority']
     old_report.report_status = body['report_status']
-    old_report.last_report = datetime.now()
+    old_report.last_report_time = datetime.now()
     await old_report.save()
     return {
         "message": f"report {body['report_id']} save successfully"
