@@ -2,8 +2,7 @@ from fastapi import APIRouter, HTTPException
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
 from db import Report, Tag
 from datetime import datetime
-from utils import calculate_distance_linear, is_later_than
-import pytz
+from utils import calculate_distance_linear
 from typing import Optional
 
 router = APIRouter(
@@ -105,7 +104,7 @@ async def get_alert(last_report_timestamp: Optional[str], lat, lon):
             last_report_timestamp = datetime.fromisoformat(last_report_timestamp[:-6])
         last_reported = last_report_timestamp
         all_report = await Report.find(Report.report_status=="Approved").to_list()
-
+ 
         for report in all_report:
             if report.last_report_time is None:
                 continue
