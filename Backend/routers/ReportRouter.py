@@ -64,4 +64,4 @@ async def update_vote_score(report_body: UpdateReportVoteBody):
     await report.save()
     return {
         "message": f"report {body['report_id']} save successfully"
-    }
+    } 
