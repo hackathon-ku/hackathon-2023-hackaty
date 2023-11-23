@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 from db import Tag
-from datetime import datetime
 from model import TagBody
 
 router = APIRouter(
