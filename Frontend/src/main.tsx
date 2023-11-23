@@ -6,6 +6,7 @@ import './index.css';
 import StudentMain from './pages/StudentMain';
 import Alert_map from './pages/Alert_map';
 import SosCall from './pages/SosCall';
+import UserReportPage from './pages/UserReportPage';
 const router = createBrowserRouter([
   {
     path: '/alert-map',
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     path: '/sos-call',
     element: <SosCall />,
   },
+  {
+    path: "/user-report",
+    element: <UserReportPage />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
