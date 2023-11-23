@@ -84,3 +84,4 @@ async def get_alert(last_report_timestamp, lat, lon):
         "report": lst,
         "last_report_timestamp": last_reported
     }
+
