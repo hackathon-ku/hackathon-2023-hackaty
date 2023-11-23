@@ -13,8 +13,6 @@ import MapModal from './components/MapModal/MapModal';
 import CoordinateMap from './components/MapModal/CoordinateMap';
 const router = createBrowserRouter([
   {
-
-
     path: '/',
     element: <StudentMain />,
   },
@@ -39,8 +37,6 @@ const router = createBrowserRouter([
     path: '/test',
     element: <MapModal />,
   },
-
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
