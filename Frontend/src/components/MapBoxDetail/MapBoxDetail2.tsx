@@ -134,7 +134,7 @@ export function MapBoxDetailAdmin({
     const forMap = (tag: string) => {
         const tagElem = (
             <Tag
-                closable
+                closable={false}
                 onClose={(e) => {
                     e.preventDefault();
                     handleClose(tag);
