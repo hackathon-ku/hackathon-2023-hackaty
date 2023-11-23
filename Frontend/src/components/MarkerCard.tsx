@@ -9,8 +9,8 @@ const MarkerCard = ({ data }: { data: MapDataLocationProps }) => {
               
             </div>
             <div className="details">
-                <div className="price">${data.desci}</div>
-                <div className="address">${data.m_id}</div>
+                <div className="price">${data.description}</div>
+                <div className="address">${data._id}</div>
                 <div className="features">
                     <div>
                         <i aria-hidden="true" className="fa fa-bed fa-lg bed" title="bedroom"></i>

@@ -6,6 +6,7 @@ import './index.css';
 import StudentMain from './pages/StudentMain';
 import Alert_map from './pages/Alert_map';
 import SosCall from './pages/SosCall';
+import UserReportPage from './pages/UserReportPage';
 import SosAdmin from './pages/SosAdmin';
 import AlertMapForm from './pages/AlertMapForm';
 const router = createBrowserRouter([
@@ -23,12 +24,13 @@ const router = createBrowserRouter([
   },
   {
     path: '/sos-alert-form',
-    element: <AlertMapForm />,
+    element: <UserReportPage />,
   },
   {
     path: '/sos-admin',
     element: <SosAdmin />,
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

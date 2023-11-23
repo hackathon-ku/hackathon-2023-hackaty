@@ -5,20 +5,17 @@ from typing import List, Optional
 class Tag(Document):
     name: str
 
-class Location(Document):
-    lat: float
-    lon: float
-
 
 class Report(Document):
     title: str
     user: str
-    tag: List[Tag]
-    location: Location
     description: str
+    tags: List[Tag]
+    lat: float
+    lon: float
     timestamp: datetime.datetime
-    priority: str
+    last_report_time: Optional[datetime.datetime] = None
+    priority: Optional[str] = "Low"
     vote_score: int
-    is_approved: bool
-    photo_url: Optional[str]
- 
+    report_status: Optional[str] = "Inbox"
+    photo_url: Optional[str] = None

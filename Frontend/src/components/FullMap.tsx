@@ -28,8 +28,8 @@ function buildContent(data: MapDataLocationProps) {
     
   </div>
   <div class="details">
-    <div class="price">${data.desci}</div>
-    <div class="address">${data.m_id}</div>
+    <div class="price">${data.description}</div>
+    <div class="address">${data._id}</div>
     <div class="features">
       <div>
         <i aria-hidden="true" class="fa fa-bed fa-lg bed" title="bedroom"></i>
@@ -62,6 +62,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
 }) => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<google.maps.Map | null>(null);
+
     useEffect(() => {
         const loadMap = async () => {
             if (!mapRef.current) return;
@@ -74,35 +75,35 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
             new AdvancedMarkerElement({
                 map: initializedMap,
                 position: location,
-                title: 'Uluru'
+                title: 'ME'
             });
-
+            console.log("mapdata",mapData)
             //marker
             mapData?.map((data, index) => {
-                console.log(data)
+                // console.log(data)
                 const marker = new AdvancedMarkerElement({
                     map: initializedMap,
                     position: { lat: data.lat, lng: data.lon },
-                    title: data.desci,
+                    title: data.description,
                     content: buildContent(data),
                 });
+                console.log("markerr",marker)
 
                 // Add a click listener to each marker instance
                 marker.addListener("click", () => {
                     { isStatus ? toggleHighlight(marker, data) : null }
                     setSelected(data);
-                    console.log(data)
+                    // console.log(data)
 
                 });
             });
 
             setMap(initializedMap); // update map state
         };
-
         loadMap();
-    }, [location, setLocation]);
-
-    return <div ref={mapRef} style={{ width: "100vw", height: "70vh" }} />;
+    }, [mapData]);
+    // return <div ref={mapRef} style={{ width: "100vw", height: "77vh", display: "flex", justifyContent: "center", margin: "0 auto" }} />;
+    return <div ref={mapRef} style={{ width: "100%", height: "77vh", display: "flex", justifyContent: "center", margin: "0 auto" }} />;
 };
 
 export default Fullmap;

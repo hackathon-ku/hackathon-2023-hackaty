@@ -30,7 +30,7 @@ const menuNavigations = [
   {
     name: 'Report',
     icon: './noise.png',
-    path: '/',
+    path: '/alert-map',
   },
   {
     name: 'MC taxi',
