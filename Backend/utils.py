@@ -13,4 +13,3 @@ def is_later_than(dt_str1, dt_str2):
 
     dt2 = datetime.fromisoformat(dt_str2)
     return dt_str1 > dt2
-
