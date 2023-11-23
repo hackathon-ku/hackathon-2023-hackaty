@@ -53,6 +53,7 @@ async def update_report(report_body: UpdateReportBody):
     old_report = await Report.get(body['report_id'])
     old_report.priority = body['priority']
     old_report.report_status = body['report_status']
+    old_report.last_report = datetime.now()
     await old_report.save()
     return {
         "message": f"report {body['report_id']} save successfully"
