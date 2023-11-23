@@ -4,11 +4,12 @@ import Fullmap from '../components/FullMap';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
 import { Button, Card, Typography, Statistic, Row, Col, Divider } from 'antd';
 import { MapBoxDetailAdmin } from '../components/MapBoxDetail/MapBoxDetail';
-import { PencilSimple } from '@phosphor-icons/react'
+import { PencilSimple } from '@phosphor-icons/react';
 import Write from '../assets/images/admin_page/write.svg';
 import Filter from '../assets/images/admin_page/filter.svg';
-import '../pages/SosAdmin.css'
-
+import '../pages/SosAdmin.css';
+import ReportDetailed from '../components/ReportDetailed';
+import MapDataBackend from '../data/data';
 
 const SosAdmin = () => {
   const [location, setLocation] = useState<CoordinateProps | null>(null);
@@ -22,36 +23,59 @@ const SosAdmin = () => {
     });
   }, []);
   return (
-    <div style={{display: 'flex'}}>
-      <div style={{width: '68vw'}}>
-        <div style={{height: '24.5vh', textAlign: 'center'}} className='sos-alert-center-title'>
-          <Typography.Title level={2} style={{paddingTop: '4.8vh'}}>
+    <div style={{ display: 'flex' }}>
+      <div style={{ width: '68vw' }}>
+        <div style={{ height: '24.5vh', textAlign: 'center' }} className="sos-alert-center-title">
+          <Typography.Title level={2} style={{ paddingTop: '4.8vh' }}>
             KU SOS ALERT CENTER
           </Typography.Title>
         </div>
-        <Card 
-          style={{position:"fixed",left:"160px",zIndex:"10",top:"126px",height: '164px', width: '651px', display: 'flex', alignItems: 'center'}}
-        > 
+        <Card
+          style={{
+            position: 'fixed',
+            left: '160px',
+            zIndex: '10',
+            top: '126px',
+            height: '164px',
+            width: '651px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <Row>
             <Col>
-              <Statistic title={'Unsuthorized Reports'} value={28} suffix={<p style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)'}}>report</p>} />
+              <Statistic
+                title={'Unsuthorized Reports'}
+                value={28}
+                suffix={<p style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)' }}>report</p>}
+              />
             </Col>
-            <Divider type="vertical" style={{marginLeft: '24px', marginRight: '24px', height: '116px'}}/>
+            <Divider type="vertical" style={{ marginLeft: '24px', marginRight: '24px', height: '116px' }} />
             <Col>
-              <Statistic title={'Top Report Tags'} value={'น้ำท่วม 24'} suffix={<p style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)'}}>report</p>} />
-              <div><p style={{fontSize: '14px', fontWeight: 'bold'}}>การจราจรติดขัด 15, อุบัติเหตุ 7</p></div>
-            </Col>
-            <Divider type="vertical" style={{marginLeft: '24px', marginRight: '24px', height: '116px'}}/>
-            <Col>
-              <Statistic title={'Top Support Report'} value={240} suffix={<p style={{fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)'}}>Supports</p>} />
+              <Statistic
+                title={'Top Report Tags'}
+                value={'น้ำท่วม 24'}
+                suffix={<p style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)' }}>report</p>}
+              />
               <div>
-                <p style={{fontSize: '14px', fontWeight: 'bold'}}>ประตู3</p>
-                <p style={{fontSize: '14px', fontWeight: 'bold'}}>อยากให้ยามออก...</p>
+                <p style={{ fontSize: '14px', fontWeight: 'bold' }}>การจราจรติดขัด 15, อุบัติเหตุ 7</p>
+              </div>
+            </Col>
+            <Divider type="vertical" style={{ marginLeft: '24px', marginRight: '24px', height: '116px' }} />
+            <Col>
+              <Statistic
+                title={'Top Support Report'}
+                value={240}
+                suffix={<p style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.45)' }}>Supports</p>}
+              />
+              <div>
+                <p style={{ fontSize: '14px', fontWeight: 'bold' }}>ประตู3</p>
+                <p style={{ fontSize: '14px', fontWeight: 'bold' }}>อยากให้ยามออก...</p>
               </div>
             </Col>
           </Row>
         </Card>
-        <div style={{width: '70vw'}}>
+        <div style={{ width: '70vw' }}>
           {location ? (
             <Fullmap
               location={location}
@@ -68,40 +92,46 @@ const SosAdmin = () => {
           {/* <MapBoxDetail selected={selected} /> */}
         </div>
       </div>
-      <div style={{background: "#F5F5F5", width: '58.3pw'}}>
-        <div style={{display: 'flex', width: '420px', gap: '16px', padding: '35px 2vw 0px 0px', marginLeft: '40px'}}>
-            <Button style={{
-              display: 'flex', 
-              backgroundColor: '#277875', 
+      <div style={{ background: '#F5F5F5', width: '58.3pw' }}>
+        <div style={{ display: 'flex', width: '420px', gap: '16px', padding: '35px 2vw 0px 0px', marginLeft: '40px' }}>
+          <Button
+            style={{
+              display: 'flex',
+              backgroundColor: '#277875',
               border: '1px solid #277875',
               padding: '6.4px 15px',
             }}
-              size='large'
-            >
-              <div style={{gap: '10px', display: 'flex', alignItems: 'center'}}>
-                <img src={Write} alt="" style={{marginBottom: '6.4px'}} />
-                <Typography.Title level={5} style={{color: 'white'}}>สร้างคำแจ้งเตือน</Typography.Title>
-              </div>
-            </Button>
-            <Button 
-              style={{
-                display: 'flex', 
-                border: '1px solid #D9D9D9',
-                padding: '6.4px 15px',
-              }}
-              size='large'
-
-            >
-              <div style={{gap: '10px', display: 'flex', alignItems: 'center'}}>
-                <img src={Filter} alt="" style={{marginBottom: '6.4px'}} />
-                <Typography.Title level={5}>Filter</Typography.Title>
-              </div>
-            </Button>
+            size="large"
+          >
+            <div style={{ gap: '10px', display: 'flex', alignItems: 'center' }}>
+              <img src={Write} alt="" style={{ marginBottom: '6.4px' }} />
+              <Typography.Title level={5} style={{ color: 'white' }}>
+                สร้างคำแจ้งเตือน
+              </Typography.Title>
+            </div>
+          </Button>
+          <Button
+            style={{
+              display: 'flex',
+              border: '1px solid #D9D9D9',
+              padding: '6.4px 15px',
+            }}
+            size="large"
+          >
+            <div style={{ gap: '10px', display: 'flex', alignItems: 'center' }}>
+              <img src={Filter} alt="" style={{ marginBottom: '6.4px' }} />
+              <Typography.Title level={5}>Filter</Typography.Title>
+            </div>
+          </Button>
         </div>
-        <div style={{gap: '2vh', overflowY: 'scroll', height: '78vh', padding: '2vw'}}>
-          {Map_data.map((data) => {
-            return <MapBoxDetailAdmin data={data}/>
-          })}
+        <div style={{ gap: '2vh', overflowY: 'scroll', height: '78vh', padding: '2vw' }}>
+          {selected === null ? (
+            Map_data.map((data) => {
+              return <MapBoxDetailAdmin data={data} setSelected={setSelected} />;
+            })
+          ) : (
+            <ReportDetailed setData={setSelected} data={selected} />
+          )}
         </div>
       </div>
     </div>
