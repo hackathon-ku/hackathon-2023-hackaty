@@ -4,10 +4,15 @@ import Map_data from '../../data/mapData';
 import { CoordinateProps } from '../../interface/interface';
 import CoordinateMap from './CoordinateMap';
 
-const MapModal: React.FC = () => {
+const MapModal = ({ selectedCoor, setSelectedCoor }: {
+  selectedCoor: CoordinateProps | null,
+  setSelectedCoor: React.Dispatch<React.SetStateAction<CoordinateProps | null>>,
+}
+
+) => {
+  console.log(selectedCoor)
   const [isModal, setIsModal] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState<CoordinateProps | null>(null);
-  console.log("current : ", currentLocation);
+  // const [selectedCoor, setSelectedCoor] = useState<CoordinateProps | null>(null);
   const showModal = () => {
     setIsModal(true);
   };
@@ -24,10 +29,10 @@ const MapModal: React.FC = () => {
     <>
       {/* <CoordinateMap isModel={isModal} setIsModel={setIsModal} selectedCoor={currentLocation} setSelectedCoor={setCurrentLocation} /> */}
       <Button type="primary" onClick={showModal}>
-        Open Modal
+        Map
       </Button>
-      <Modal title="Basic Modal" open={isModal} onOk={handleOk} onCancel={handleCancel}>
-        <CoordinateMap isModel={isModal} setIsModel={setIsModal} selectedCoor={currentLocation} setSelectedCoor={setCurrentLocation} />
+      <Modal title="Select Map Location" open={isModal} onOk={handleOk} onCancel={handleCancel} footer={null}>
+        <CoordinateMap isModel={isModal} setIsModel={setIsModal} selectedCoor={selectedCoor} setSelectedCoor={setSelectedCoor} />
       </Modal>
     </>
   );

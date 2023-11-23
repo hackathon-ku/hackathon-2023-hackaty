@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Map_data from '../data/mapData';
-import Fullmap from '../components/FullMap';
+import Fullmap2 from '../components/FullMap2';
 import { CoordinateProps, MapDataLocationProps } from '../interface/interface';
 import { Button, Card, Typography, Statistic, Row, Col, Divider } from 'antd';
 import { MapBoxDetailAdmin } from '../components/MapBoxDetail/MapBoxDetail2';
@@ -97,7 +97,7 @@ const SosAdmin = () => {
         </Card>
         <div style={{ width: '70vw' }}>
           {location ? (
-            <Fullmap
+            <Fullmap2
               location={location}
               setLocation={setLocation}
               setSelected={setSelected}
