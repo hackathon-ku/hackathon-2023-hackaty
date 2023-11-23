@@ -66,7 +66,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
         const loadMap = async () => {
             if (!mapRef.current) return;
             const initializedMap = new Map(mapRef.current, {
-                zoom: 18,
+                zoom: 20,
                 center: location,
                 mapId: 'DEMO_MAP_ID',
             });
@@ -74,12 +74,12 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
             new AdvancedMarkerElement({
                 map: initializedMap,
                 position: location,
-                title: 'Uluru'
+                title: 'ME'
             });
 
             //marker
             mapData?.map((data, index) => {
-                console.log(data)
+                // console.log(data)
                 const marker = new AdvancedMarkerElement({
                     map: initializedMap,
                     position: { lat: data.lat, lng: data.lon },
@@ -91,7 +91,7 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
                 marker.addListener("click", () => {
                     { isStatus ? toggleHighlight(marker, data) : null }
                     setSelected(data);
-                    console.log(data)
+                    // console.log(data)
 
                 });
             });
@@ -101,8 +101,8 @@ const Fullmap = ({ location, setLocation, setSelected, mapData, isStatus }: {
 
         loadMap();
     }, [location, setLocation]);
-
-    return <div ref={mapRef} style={{ width: "100vw", height: "70vh" }} />;
+    // return <div ref={mapRef} style={{ width: "100vw", height: "77vh", display: "flex", justifyContent: "center", margin: "0 auto" }} />;
+    return <div ref={mapRef} style={{ width: "100%", height: "77vh", display: "flex", justifyContent: "center", margin: "0 auto" }} />;
 };
 
 export default Fullmap;

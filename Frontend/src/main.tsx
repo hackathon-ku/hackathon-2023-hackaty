@@ -6,6 +6,7 @@ import './index.css';
 import StudentMain from './pages/StudentMain';
 import Alert_map from './pages/Alert_map';
 import SosCall from './pages/SosCall';
+import UserReportPage from './pages/UserReportPage';
 import SosAdmin from './pages/SosAdmin';
 import AlertMapForm from './pages/AlertMapForm';
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: '/sos-call',
     element: <SosCall />,
+  },
+  {
+    path: "/user-report",
+    element: <UserReportPage />
   },
   {
     path: '/alert-map',

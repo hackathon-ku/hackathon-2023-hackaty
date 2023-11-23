@@ -15,9 +15,10 @@ export interface MapDataLocationProps {
     Status: boolean;
     Priority: string;
     vote_score: number;
+    title: string;
 }
 
 export interface TagProps {
-    _id : string;
+    _id: string;
     name: string;
 }
