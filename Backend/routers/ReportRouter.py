@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from model import CreateUserReportBody, CreateAdminReportBody, UpdateReportBody, UpdateReportVoteBody
 from db import Report
 from datetime import datetime
-from utils import calculate_distance
+from utils import calculate_distance_linear
 
 
 router = APIRouter(
@@ -21,7 +21,7 @@ def landing():
 async def create_user_report(createbody: CreateUserReportBody):
     report = Report(**{**createbody.model_dump(), "timestamp": datetime.now(),
                     "vote_score": 0, "report_status": "Inbox"})
-    if calculate_distance(13.850679, 100.573696, report.lat, report.lon) < 4:
+    if calculate_distance_linear(13.850679, 100.573696, report.lat, report.lon) < 4:
         raise HTTPException("Cant pin outside campus")
     await report.insert()
     return {
@@ -75,7 +75,7 @@ async def get_alert(last_report_timestamp, lat, lon):
     last_reported = last_report_timestamp
     queryed_report = await Report.find(Report.last_report!=last_report_timestamp, Report.last_report<last_report_timestamp).to_list()
     for report in queryed_report:
-        if calculate_distance(lat, lon, report.lat, report.lon) < 4:
+        if calculate_distance_linear(lat, lon, report.lat, report.lon) < 4:
             lst.append(report)
             if report.last_report  > last_reported:
                 last_reported = report.last_report
