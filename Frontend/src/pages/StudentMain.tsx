@@ -98,7 +98,6 @@ function StudentMain() {
       });
     });
   }, []);
-  /* ------------------------------- get weather ------------------------------ */
   useEffect(() => {
     if (!location) return;
     axios

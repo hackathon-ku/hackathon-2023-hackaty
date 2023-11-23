@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Alert_map.css';
 import axios from 'axios';
 
+
 function Alert_map() {
   const [location, setLocation] = useState<CoordinateProps | null>(null);
   const [selected, setSelected] = useState<MapDataLocationProps | null>(null);
